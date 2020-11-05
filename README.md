@@ -1,2 +1,2 @@
-# tankmon
+# TanksMon
 Tank monitoring system
