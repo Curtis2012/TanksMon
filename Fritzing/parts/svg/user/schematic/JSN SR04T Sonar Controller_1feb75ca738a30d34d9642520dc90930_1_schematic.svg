@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!-- Created with Fritzing (http://www.fritzing.org/) -->
+<svg xmlns="http://www.w3.org/2000/svg" y="0in" version="1.2" baseProfile="tiny"  viewBox="0 0 30.48 30.48" height="1.2in" width="1.2in" x="0in">
+    <desc >
+        <referenceFile >Humidity_and_Temperature_Sensor_RHT03_6.svg</referenceFile>
+    </desc>
+    <g  gorn="0.1" id="schematic">
+        <rect y="5.23875"  fill="#FFFFFF" stroke="#000000" stroke-linecap="round" height="20.0025" width="25.0825" stroke-width="0.3175" class="interior rect" x="5.23875"/>
+        <line y1="12.7"  y2="12.7" gorn="0.1.1" x1="0.123472" x2="5.20347" fill="none" stroke="#787878" stroke-linecap="round" id="connector9" stroke-width="0.246944" class="pin"/>
+        <text y="12.9469" font-size="1.23472"  font-family="'Droid Sans'" fill="#8c8c8c" stroke="none" text-anchor="start" stroke-width="0" class="text" x="5.69736">Data-signal</text>
+        <rect y="12.5765"  gorn="0.1.3" fill="none" stroke="none" height="0.246944" width="0.246944" id="connector9terminal" stroke-width="0" class="terminal" x="-0.123472"/>
+        <line y1="25.2765"  y2="30.3565" gorn="0.1.4" x1="17.78" x2="17.78" fill="none" stroke="none" stroke-linecap="round" id="connector10" stroke-width="0" class="pin"/>
+        <rect y="30.3565"  gorn="0.1.5" fill="none" stroke="none" height="0.246944" width="0.246944" id="connector10terminal" stroke-width="0" class="terminal" x="17.6565"/>
+        <line y1="25.2765"  y2="30.3565" gorn="0.1.6" x1="17.78" x2="17.78" fill="none" stroke="#787878" stroke-linecap="round" id="connector11" stroke-width="0.246944" class="pin"/>
+        <g  transform="translate(18.0269,24.7826)">
+            <g >
+                <g >
+                    <g >
+                        <g  transform="rotate(270)">
+                            <g >
+                                <g >
+                                    <g >
+                                        <text y="0" font-size="1.23472"  font-family="'Droid Sans'" fill="#8c8c8c" stroke="none" text-anchor="start" stroke-width="0" class="text" x="0">GND 2</text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <rect y="30.3565"  gorn="0.1.8" fill="none" stroke="none" height="0.246944" width="0.246944" id="connector11terminal" stroke-width="0" class="terminal" x="17.6565"/>
+        <line y1="0.123472"  y2="5.20347" gorn="0.1.9" x1="17.78" x2="17.78" fill="none" stroke="#787878" stroke-linecap="round" id="connector8" stroke-width="0.246944" class="pin"/>
+        <g  transform="translate(18.0269,5.69736)">
+            <g >
+                <g >
+                    <g >
+                        <g  transform="rotate(270)">
+                            <g >
+                                <g >
+                                    <g >
+                                        <text y="0" font-size="1.23472"  font-family="'Droid Sans'" fill="#8c8c8c" stroke="none" text-anchor="end" stroke-width="0" class="text" x="0">Vcc</text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <rect y="-0.123472"  gorn="0.1.11" fill="none" stroke="none" height="0.246944" width="0.246944" id="connector8terminal" stroke-width="0" class="terminal" x="17.6565"/>
+        <text y="11.4005" font-size="1.49931"  gorn="0.1.12" font-family="'Droid Sans'" fill="#000000" stroke="none" text-anchor="middle" id="label" stroke-width="0" class="text" x="17.9387">Humidity</text>
+        <text y="12.9998" font-size="1.49931"  gorn="0.1.13" font-family="'Droid Sans'" fill="#000000" stroke="none" text-anchor="middle" id="label" stroke-width="0" class="text" x="17.9387">and</text>
+        <text y="14.5991" font-size="1.49931"  gorn="0.1.14" font-family="'Droid Sans'" fill="#000000" stroke="none" text-anchor="middle" id="label" stroke-width="0" class="text" x="17.9387">Temperature</text>
+        <text y="16.1984" font-size="1.49931"  gorn="0.1.15" font-family="'Droid Sans'" fill="#000000" stroke="none" text-anchor="middle" id="label" stroke-width="0" class="text" x="17.9387">Sensor</text>
+        <text y="17.7977" font-size="1.49931"  gorn="0.1.16" font-family="'Droid Sans'" fill="#000000" stroke="none" text-anchor="middle" id="label" stroke-width="0" class="text" x="17.9387">RHT03</text>
+    </g>
+</svg>

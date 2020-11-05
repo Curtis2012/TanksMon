@@ -1,0 +1,45 @@
+{
+"site":
+	{
+	"sitename":"CSC/HOMEPA",
+	"timezone":"-5",
+	"dst":"false",
+	"pssid":"COWIFI151420636/0",
+	"ppwd":"WiFi-89951645",
+	"usealt":"true",
+	"altssid":"COWIFI151420636/0",
+	"altpwd":"WiFi-89951645",
+	"mqtt_topic":"csc/homepa/tankmon_tst",
+	"mqtt_server":"soldier.cloudmqtt.com",
+	"mqtt_port":"12045",
+	"mqtt_uid":"afdizojo",
+	"mqtt_pwd":"hfi3smlfeSqV",
+    "numtanks":"2",
+	"displaydelay":"15000",
+	"metric":"true",
+	"useavg":"false",
+	"debug":"false",
+	"tankpingdelay":"5000",
+	"senddatadelay":"15000",
+	"otapwd":"Sail2012",
+	"blynkauthtoken":"WlBesaF6zbb7UILuGZai66-sxEc4LM4l"
+	},
+	
+"tanks":
+[
+	{	
+	"depth":"95.25",
+	"vCM":"10.8",
+	"sensorOffset":"21.0",
+	"loAlarm":"0.10",
+	"hiAlarm":"1.10"
+	},
+	{	
+	"depth":"95.5",
+	"vCM":"10.8",
+	"sensorOffset":"19.0",
+	"loAlarm":"0.10",
+	"hiAlarm":"1.10"
+	}
+]
+}

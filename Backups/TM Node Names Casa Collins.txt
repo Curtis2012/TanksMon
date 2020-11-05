@@ -1,0 +1,6 @@
+Casa Collins Panama Node Names
+
+MNTM-ESP8266-251715   Production Manager Node
+SNTM-ESP8266-24F00B   Production Sensor Node
+MNTM-ESP8266-C8FDEA   Test Manager Node
+SNTM-ESP8266-B31967   Test Sensor Node

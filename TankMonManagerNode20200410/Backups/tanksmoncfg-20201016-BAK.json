@@ -1,0 +1,63 @@
+{
+"site":
+	{
+	"sitename":"CSC/HOMEPA",
+	"timezone":-5,
+	"dst":false,
+	"pssid":"COWIFI151420636/0",
+	"ppwd":"WiFi-89951645",
+	"usealt":false,
+	"altssid":"COWIFI151420636/0",
+	"altpwd":"WiFi-89951645",
+	"mqtt_topic":"csc/homepa/tankmon",
+	"mqtt_server":"cscrpi",
+	"mqtt_port":1883,
+	"mqtt_uid":"afdizojo",
+	"mqtt_pwd":"hfi3smlfeSqV",
+    "numtanks":2,
+	"displaydelay":15000,
+	"imperial":false,
+	"useavg":false,
+	"debug":false,
+	"tankpingdelay":5000,
+	"senddatadelay":15000,
+	"otapwd":"Sail2012",
+	"blynkauthtoken":"GBCY5avvW45A24xyW7J_TXNegXxv89q-"
+	},
+	
+"tankdefs":
+[
+	{	
+    "tankType":"W",
+	"depth":95.25,
+	"vCM":10.8,
+	"sensorOffset":21.0,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10
+	},
+	{	
+	"tankType":"W",
+	"depth":95.5,
+	"vCM":10.8,
+	"sensorOffset":19.0,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10
+	},
+	{	
+	"tankType":"W",
+	"depth":95.5,
+	"vCM":10.8,
+	"sensorOffset":19.0,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10
+	},
+	{	
+	"tankType":"P",
+	"depth":95.5,
+	"vCM":10.8,
+	"sensorOffset":19.0,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10
+	}
+]
+}

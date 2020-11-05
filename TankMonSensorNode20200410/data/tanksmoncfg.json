@@ -1,0 +1,85 @@
+{
+"site":
+	{
+	"sitename":"SUPERAGUAS",
+	"timezone":-5,
+	"dst":false,
+	"pssid":"pumpmonrpi",
+	"ppwd":"sail2012",
+	"usealt":false,
+	"altssid":"Bodega",
+	"altpwd":"sail2012",
+	"mqtt_topic_data": "superaguas/tankmon_data",
+	"mqtt_topic_ctrl": "superaguas/tankmon_ctrl",	
+	"mqtt_server":"",
+	"mqtt_port":1883,
+	"mqtt_uid":"",
+	"mqtt_pwd":"",
+    "numtanks":4,
+    "startingTankNum": 0,
+	"displaydelay":15000,
+	"imperial":false,
+	"useavg":false,
+	"debug":true,
+	"tankpingdelay":5000,
+	"senddatadelay":15000,
+	"otapwd":"Sail2012",
+	"blynkauthtoken":"S6_uUtRuEMvoCeFdHpvOyA0NYhhCUIa4"
+	},
+	
+"tankdefs":
+[
+	{	
+    "tankType":"W",
+    "ignore":false,
+	"depth":95.25,
+	"vCM":10.8,
+	"sonarOffset":21.0,
+	"sonarTrigPin": 14,
+    "sonarEchoPin": 12,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10,
+    "pumpnode":0,
+	"pumpnumber":0
+	},
+	{	
+	"tankType":"W",
+    "ignore":false,		
+	"depth":95.5,
+	"vCM":10.8,
+	"sonarOffset":19.0,
+	"sonarTrigPin": 13,
+    "sonarEchoPin": 15,		
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10,
+	"pumpnode":0,
+	"pumpnumber":0
+	},
+	{	
+	"tankType":"W",
+    "ignore":false,		
+	"depth":95.5,
+	"vCM":10.8,
+	"sonarOffset":19.0,
+	"sonarTrigPin": 5,
+    "sonarEchoPin":4,	
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10,
+	"pumpnode":0,
+	"pumpnumber":0
+	},
+	{	
+	"tankType":"W",
+    "ignore":false,		
+	"depth":95.5,
+	"vCM":10.8,
+	"sonarOffset":19.0,
+	"sonarTrigPin": 0,
+    "sonarEchoPin": 2,			
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10,
+	"pumpnode":0,
+	"pumpnumber":0
+	}
+]
+}

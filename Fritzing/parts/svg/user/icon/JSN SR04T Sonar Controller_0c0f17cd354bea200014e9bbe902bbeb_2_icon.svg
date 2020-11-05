@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg>
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"  xmlns:xml="http://www.w3.org/XML/1998/namespace" height="23mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 13 23" width="13mm">
+    <desc>
+        <referenceFile>Humidity_and_Temperature_Sensor_RHT03_6.svg</referenceFile>
+    </desc>
+    <defs >
+        <style type="text/css" ><![CDATA[
+    .str0 {stroke:#1E1E1E;stroke-width:0.0762}
+    .str3 {stroke:#78786E;stroke-width:0.0762}
+    .str2 {stroke:#78786E;stroke-width:0.25}
+    .str1 {stroke:#8C8C8C;stroke-width:0.762}
+    .fil3 {fill:none}
+    .fil1 {fill:#1E1E1E}
+    .fil6 {fill:#323232}
+    .fil2 {fill:#C3C3C3}
+    .fil4 {fill:#CBCBCB}
+    .fil0 {fill:#E6E6E6}
+    .fil5 {fill:#F0F0F0}
+    .fil7 {fill:url(#id0)}
+   ]]></style>
+        <linearGradient id="id0" gradientUnits="userSpaceOnUse"  y1="4.93" y2="4.238" x1="4.6119" x2="4.6119">
+            <stop  offset="0" style="stop-color:#A8A89E"/>
+            <stop  offset="1" style="stop-color:white"/>
+        </linearGradient>
+    </defs>
+    <g id="Capa_x0020_1"  gorn="0.1">
+        <metadata id="CorelCorpID_0Corel-Layer" />
+        <g id="_144824656"  gorn="0.1.1">
+            <g >
+                <rect class="fil0" x="0.8853" id="_144825976" y="0.6134"  height="16.6163" gorn="0.1.1.0.0" rx="2.8586" ry="2.8586" width="10.9479"/>
+                <ellipse class="fil1 str0" id="_144821416"  cx="6.43368" cy="2.8523" gorn="0.1.1.0.1" rx="1.03627" ry="1.071"/>
+            </g>
+            <g >
+                <rect class="fil2" x="0.9914" id="_144822136" y="6.52589"  height="10.9803" gorn="0.1.1.1.0" width="11.2103"/>
+                <rect class="fil2" x="0.9886" id="_144818704" y="4.37038"  height="3.87821" gorn="0.1.1.1.1" rx="0.0684" ry="0.0684" width="0.9294"/>
+                <rect class="fil2" x="11.2886" id="_144826744" y="4.37038"  height="3.87821" gorn="0.1.1.1.2" rx="0.0684" ry="0.0684" width="0.9181"/>
+                <rect class="fil2" x="0.9886" id="_144823288" y="15.4243"  height="3.65203" gorn="0.1.1.1.3" rx="0.228" ry="0.228" width="0.9294"/>
+                <rect class="fil2" x="10.577" id="_144827656" y="17.052"  height="2.02432" gorn="0.1.1.1.4" rx="0.228" ry="0.228" width="1.6246"/>
+                <rect class="fil2" x="1.71401" id="_144829120" y="5.3063"  height="12.8996" gorn="0.1.1.1.5" width="9.76769"/>
+                <rect class="fil2" x="1.3713" id="_144820960" y="4.3487"  height="14.7276" gorn="0.1.1.1.6" width="10.3351"/>
+            </g>
+            <g >
+                <line class="fil3 str1" id="_144824728"  y1="18.9344" y2="22.1885" x1="7.5868" x2="7.5894" gorn="0.1.1.2.0"/>
+                <line class="fil3 str1" id="_144822016"  y1="18.9322" y2="22.1863" x1="10.1268" x2="10.1294" gorn="0.1.1.2.1"/>
+                <line class="fil3 str1" id="_144829456"  y1="18.9322" y2="22.1863" x1="2.5068" x2="2.5094" gorn="0.1.1.2.2"/>
+                <line class="fil3 str1" id="_144819832"  y1="18.9322" y2="22.1863" x1="5.0468" x2="5.0494" gorn="0.1.1.2.3"/>
+            </g>
+            <g >
+                <g >
+                    <rect class="fil4" x="9.3413" id="_144826048" y="6.87295"  height="0.9398" gorn="0.1.1.3.0.0" width="2.5327"/>
+                    <rect class="fil4" x="9.3413" id="_144823816" y="8.77295"  height="0.9398" gorn="0.1.1.3.0.1" width="2.5327"/>
+                    <rect class="fil4" x="9.3426" id="_144826288" y="10.6729"  height="0.9398" gorn="0.1.1.3.0.2" width="2.5314"/>
+                    <rect class="fil4" x="9.3414" id="_144823936" y="12.5729"  height="0.9398" gorn="0.1.1.3.0.3" width="2.5326"/>
+                    <rect class="fil4" x="9.3413" id="_144820816" y="14.4729"  height="0.9398" gorn="0.1.1.3.0.4" width="2.5327"/>
+                </g>
+                <g >
+                    <rect class="fil4" x="0.8652" id="_144817768" y="6.87295"  height="0.9398" gorn="0.1.1.3.1.0" width="0.704"/>
+                    <rect class="fil4" x="0.8652" id="_144819880" y="8.77295"  height="0.9398" gorn="0.1.1.3.1.1" width="0.704"/>
+                    <rect class="fil4" x="0.8652" id="_144822112" y="10.6729"  height="0.9398" gorn="0.1.1.3.1.2" width="0.704"/>
+                    <rect class="fil4" x="0.8652" id="_144820576" y="12.5729"  height="0.9398" gorn="0.1.1.3.1.3" width="0.704"/>
+                    <rect class="fil4" x="0.8652" id="_144821872" y="14.4729"  height="0.9398" gorn="0.1.1.3.1.4" width="0.704"/>
+                </g>
+            </g>
+            <g >
+                <g >
+                    <rect class="fil1" x="4.143" id="_144818008" y="6.87273"  height="0.939822" gorn="0.1.1.4.0.0" width="0.9398"/>
+                    <rect class="fil1" x="5.943" id="_144821656" y="6.87273"  height="0.939822" gorn="0.1.1.4.0.1" width="0.9398"/>
+                    <rect class="fil1" x="7.643" id="_144829816" y="6.87273"  height="0.939822" gorn="0.1.1.4.0.2" width="0.9398"/>
+                    <path class="fil1" id="_144831328"  gorn="0.1.1.4.0.3" d="M9.343 6.8727l1.5828 0c0.2071,0 0.3763,0.0839 0.3763,0.1866l0 0.5666c0,0.1027 -0.1692,0.1867 -0.3763,0.1867l-1.5828 0 0 -0.9399z"/>
+                    <rect class="fil1" x="1.5695" id="_144827224" y="6.87273"  height="0.939822" gorn="0.1.1.4.0.4" width="1.7133"/>
+                </g>
+                <g >
+                    <rect class="fil1" x="4.143" id="_144824824" y="8.77273"  height="0.939822" gorn="0.1.1.4.1.0" width="0.9398"/>
+                    <rect class="fil1" x="5.943" id="_144817504" y="8.77273"  height="0.939822" gorn="0.1.1.4.1.1" width="0.9398"/>
+                    <rect class="fil1" x="7.643" id="_144825928" y="8.77273"  height="0.939822" gorn="0.1.1.4.1.2" width="0.9398"/>
+                    <path class="fil1" id="_144829048"  gorn="0.1.1.4.1.3" d="M9.343 8.7727l1.5828 0c0.2071,0 0.3763,0.0839 0.3763,0.1866l0 0.5666c0,0.1027 -0.1692,0.1867 -0.3763,0.1867l-1.5828 0 0 -0.9399z"/>
+                    <rect class="fil1" x="1.5695" id="_144825112" y="8.77273"  height="0.939822" gorn="0.1.1.4.1.4" width="1.7133"/>
+                </g>
+                <g >
+                    <rect class="fil1" x="4.143" id="_144821512" y="10.6727"  height="0.939822" gorn="0.1.1.4.2.0" width="0.9398"/>
+                    <rect class="fil1" x="5.943" id="_144822784" y="10.6727"  height="0.939822" gorn="0.1.1.4.2.1" width="0.9398"/>
+                    <rect class="fil1" x="7.643" id="_144822664" y="10.6727"  height="0.939822" gorn="0.1.1.4.2.2" width="0.9398"/>
+                    <path class="fil1" id="_144820672"  gorn="0.1.1.4.2.3" d="M9.343 10.6727l1.5828 0c0.2071,0 0.3763,0.0839 0.3763,0.1866l0 0.5666c0,0.1027 -0.1692,0.1867 -0.3763,0.1867l-1.5828 0 0 -0.9399z"/>
+                    <rect class="fil1" x="1.5695" id="_144824752" y="10.6727"  height="0.939822" gorn="0.1.1.4.2.4" width="1.7133"/>
+                </g>
+                <g >
+                    <rect class="fil1" x="4.143" id="_144828472" y="12.5727"  height="0.939822" gorn="0.1.1.4.3.0" width="0.9398"/>
+                    <rect class="fil1" x="5.943" id="_144821968" y="12.5727"  height="0.939822" gorn="0.1.1.4.3.1" width="0.9398"/>
+                    <rect class="fil1" x="7.643" id="_144828256" y="12.5727"  height="0.939822" gorn="0.1.1.4.3.2" width="0.9398"/>
+                    <path class="fil1" id="_144828376"  gorn="0.1.1.4.3.3" d="M9.343 12.5727l1.5828 0c0.2071,0 0.3763,0.0839 0.3763,0.1866l0 0.5666c0,0.1027 -0.1692,0.1867 -0.3763,0.1867l-1.5828 0 0 -0.9399z"/>
+                    <rect class="fil1" x="1.5695" id="_144823504" y="12.5727"  height="0.939822" gorn="0.1.1.4.3.4" width="1.7133"/>
+                </g>
+                <g >
+                    <rect class="fil1" x="4.143" id="_144825784" y="14.4727"  height="0.939822" gorn="0.1.1.4.4.0" width="0.9398"/>
+                    <rect class="fil1" x="5.943" id="_144826936" y="14.4727"  height="0.939822" gorn="0.1.1.4.4.1" width="0.9398"/>
+                    <rect class="fil1" x="7.643" id="_144826912" y="14.4727"  height="0.939822" gorn="0.1.1.4.4.2" width="0.9398"/>
+                    <path class="fil1" id="_144827152"  gorn="0.1.1.4.4.3" d="M9.343 14.4727l1.5828 0c0.2071,0 0.3763,0.0839 0.3763,0.1866l0 0.5666c0,0.1027 -0.1692,0.1867 -0.3763,0.1867l-1.5828 0 0 -0.9399z"/>
+                    <rect class="fil1" x="1.5695" id="_144827080" y="14.4727"  height="0.939822" gorn="0.1.1.4.4.4" width="1.7133"/>
+                </g>
+            </g>
+            <g >
+                <g >
+                    <g >
+                        <g >
+                            <rect class="fil5" x="3.2832" id="_144817024" y="4.23815"  height="13.9826" gorn="0.1.1.5.0.0.0.0" width="0.8599"/>
+                            <rect class="fil5" x="3.28745" id="_144817168" y="3.9564"  height="0.749038" gorn="0.1.1.5.0.0.0.1" rx="0.0588" ry="0.0588" width="0.8548"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="5.0832" id="_144817240" y="4.23815"  height="13.9826" gorn="0.1.1.5.0.0.1.0" width="0.8599"/>
+                            <rect class="fil5" x="5.08745" id="_144816328" y="3.9564"  height="0.749038" gorn="0.1.1.5.0.0.1.1" rx="0.0588" ry="0.0588" width="0.8548"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="6.8832" id="_144815368" y="4.23815"  height="13.9826" gorn="0.1.1.5.0.0.2.0" width="0.8599"/>
+                            <rect class="fil5" x="6.88745" id="_144818248" y="3.9564"  height="0.749038" gorn="0.1.1.5.0.0.2.1" rx="0.0588" ry="0.0588" width="0.8548"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="8.5832" id="_144817960" y="4.23815"  height="13.9826" gorn="0.1.1.5.0.0.3.0" width="0.8599"/>
+                            <rect class="fil5" x="8.58745" id="_144818128" y="3.9564"  height="0.749038" gorn="0.1.1.5.0.0.3.1" rx="0.0588" ry="0.0588" width="0.8548"/>
+                        </g>
+                    </g>
+                    <g >
+                        <g >
+                            <rect class="fil5" x="0.9928" id="_144817864" y="5.6144"  height="1.2554" gorn="0.1.1.5.0.1.0.0" width="10.8352"/>
+                            <rect class="fil5" x="0.666" id="_144817720" y="5.6173"  height="1.2553" gorn="0.1.1.5.0.1.0.1" rx="0.0904" ry="0.0904" width="1.2051"/>
+                            <rect class="fil5" x="10.766" id="_144817408" y="5.6173"  height="1.2553" gorn="0.1.1.5.0.1.0.2" rx="0.0904" ry="0.0904" width="1.2561"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="0.9928" id="_144817744" y="7.8281"  height="0.940802" gorn="0.1.1.5.0.1.1.0" width="10.8352"/>
+                            <rect class="fil5" x="0.666" id="_144828448" y="7.83027"  height="0.940727" gorn="0.1.1.5.0.1.1.1" rx="0.0904" ry="0.0904" width="1.2051"/>
+                            <rect class="fil5" x="10.766" id="_144815320" y="7.83027"  height="0.940727" gorn="0.1.1.5.0.1.1.2" rx="0.0904" ry="0.0904" width="1.2561"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="0.9928" id="_144826264" y="9.7139"  height="0.95497" gorn="0.1.1.5.0.1.2.0" width="10.8352"/>
+                            <rect class="fil5" x="0.666" id="_144825736" y="9.71611"  height="0.954894" gorn="0.1.1.5.0.1.2.1" rx="0.0904" ry="0.0904" width="1.2051"/>
+                            <rect class="fil5" x="10.766" id="_144821320" y="9.71611"  height="0.954894" gorn="0.1.1.5.0.1.2.2" rx="0.0904" ry="0.0904" width="1.2561"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="0.9928" id="_144828688" y="11.6139"  height="0.95497" gorn="0.1.1.5.0.1.3.0" width="10.8352"/>
+                            <rect class="fil5" x="0.666" id="_144819808" y="11.6161"  height="0.954894" gorn="0.1.1.5.0.1.3.1" rx="0.0904" ry="0.0904" width="1.2051"/>
+                            <rect class="fil5" x="10.766" id="_144820288" y="11.6161"  height="0.954894" gorn="0.1.1.5.0.1.3.2" rx="0.0904" ry="0.0904" width="1.2561"/>
+                        </g>
+                        <g >
+                            <rect class="fil5" x="0.9928" id="_144820888" y="13.5139"  height="0.95497" gorn="0.1.1.5.0.1.4.0" width="10.8352"/>
+                            <rect class="fil5" x="0.666" id="_144819568" y="13.5161"  height="0.954894" gorn="0.1.1.5.0.1.4.1" rx="0.0904" ry="0.0904" width="1.2051"/>
+                            <rect class="fil5" x="10.766" id="_144818536" y="13.5161"  height="0.954894" gorn="0.1.1.5.0.1.4.2" rx="0.0904" ry="0.0904" width="1.2561"/>
+                        </g>
+                    </g>
+                </g>
+                <g >
+                    <g >
+                        <rect class="fil5" x="0.7914" id="_144827800" y="15.9243"  height="2.5827" gorn="0.1.1.5.1.0.0" width="11.2103"/>
+                        <rect class="fil5" x="0.7886" id="_144826000" y="15.4173"  height="0.9122" gorn="0.1.1.5.1.0.1" rx="0.0684" ry="0.0684" width="0.9294"/>
+                        <rect class="fil5" x="11.0886" id="_144827488" y="15.4173"  height="0.9122" gorn="0.1.1.5.1.0.2" rx="0.0684" ry="0.0684" width="0.9181"/>
+                        <rect class="fil5" x="0.7886" id="_144825808" y="18.0173"  height="0.859" gorn="0.1.1.5.1.0.3" rx="0.228" ry="0.228" width="0.9294"/>
+                        <rect class="fil5" x="11.0886" id="_144825208" y="18.0173"  height="0.859" gorn="0.1.1.5.1.0.4" rx="0.228" ry="0.228" width="0.913"/>
+                        <rect class="fil5" x="1.51401" id="_144821752" y="15.6374"  height="3.03412" gorn="0.1.1.5.1.0.5" width="9.76769"/>
+                        <rect class="fil5" x="1.1713" id="_144821560" y="15.4122"  height="3.4641" gorn="0.1.1.5.1.0.6" width="10.3351"/>
+                    </g>
+                    <g >
+                        <rect class="fil5" x="0.6711" id="_144822040" y="3.9541"  height="2.2342" gorn="0.1.1.5.1.1.0" rx="0.4468" ry="0.4468" width="3.1861"/>
+                        <rect class="fil5" x="8.8665" id="_144822280" y="3.9541"  height="2.2342" gorn="0.1.1.5.1.1.1" rx="0.4468" ry="0.4468" width="3.1505"/>
+                    </g>
+                </g>
+            </g>
+            <g >
+                <g >
+                    <g >
+                        <rect class="fil6" x="4.1435" id="_144827680" y="4.9226"  height="0.6921" gorn="0.1.1.6.0.0.0" width="0.9369"/>
+                        <rect class="fil6" x="5.9435" id="_144824176" y="4.9226"  height="0.6921" gorn="0.1.1.6.0.0.1" width="0.9369"/>
+                        <rect class="fil6" x="7.7457" id="_144822616" y="4.9226"  height="0.6921" gorn="0.1.1.6.0.0.2" width="0.7951"/>
+                    </g>
+                    <g >
+                        <path class="fil3 str2" id="_144828880"  gorn="0.1.1.6.0.1.0" d="M4.1431 5.2274c0.9396,0 0.9396,0 0.9396,0"/>
+                        <path class="fil3 str3" id="_144823480"  gorn="0.1.1.6.0.1.1" d="M5.9433 5.1839c0.2943,-0.0018 0.4559,0.1418 0.4746,0.4285"/>
+                    </g>
+                </g>
+                <g >
+                    <rect class="fil7" x="4.1435" id="_144817384" y="4.238"  height="0.6921" gorn="0.1.1.6.1.0" width="0.9369"/>
+                    <rect class="fil7" x="5.9435" id="_144825040" y="4.238"  height="0.6921" gorn="0.1.1.6.1.1" width="0.9369"/>
+                    <rect class="fil7" x="7.7457" id="_144817648" y="4.238"  height="0.6921" gorn="0.1.1.6.1.2" width="0.7951"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

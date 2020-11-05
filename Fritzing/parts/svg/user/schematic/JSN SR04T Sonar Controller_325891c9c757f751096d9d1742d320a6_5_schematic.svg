@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!-- Created with Fritzing (http://www.fritzing.org/) -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" y="0in"  viewBox="0 0 22.86 22.86" width="0.9in" height="0.9in" x="0in">
+    <desc>
+        <referenceFile>JSN SR04T Sonar Controller_325891c9c757f751096d9d1742d320a6_3_schematic.svg</referenceFile>
+    </desc>
+    <g  gorn="0.0" id="schematic">
+        <rect y="5.23875"  fill="#FFFFFF" stroke="#000000" stroke-linecap="round" width="17.4625" height="12.3825" stroke-width="0.3175" class="interior rect" x="5.23875"/>
+        <line y1="10.16"  y2="10.16" gorn="0.0.1" x1="0.123472" x2="5.20347" fill="none" stroke="#787878" stroke-linecap="round" stroke-width="0.246944" id="connector9" class="pin"/>
+        <text font-size="1.23472" y="10.4069"  font-family="'Droid Sans'" stroke="none" fill="#8c8c8c" text-anchor="start" stroke-width="0" class="text" x="5.69736">TX Echo</text>
+        <rect y="10.0365"  gorn="0.0.3" fill="none" stroke="none" width="0.246944" height="0.246944" stroke-width="0" id="connector9terminal" class="terminal" x="-0.123472"/>
+        <line y1="17.6565"  y2="22.7365" gorn="0.0.4" x1="12.7" x2="12.7" fill="none" stroke="none" stroke-linecap="round" stroke-width="0" id="connector10" class="pin"/>
+        <rect y="22.7365"  gorn="0.0.5" fill="none" stroke="none" width="0.246944" height="0.246944" stroke-width="0" id="connector10terminal" class="terminal" x="12.5765"/>
+        <line y1="17.6565"  y2="22.7365" gorn="0.0.6" x1="12.7" x2="12.7" fill="none" stroke="#787878" stroke-linecap="round" stroke-width="0.246944" id="connector11" class="pin"/>
+        <g  transform="translate(12.9469,17.1626)">
+            <g >
+                <g  transform="rotate(270)">
+                    <g >
+                        <text font-size="1.23472" y="0"  font-family="'Droid Sans'" stroke="none" fill="#8c8c8c" text-anchor="start" stroke-width="0" class="text" x="0">5V</text>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <rect y="22.7365"  gorn="0.0.8" fill="none" stroke="none" width="0.246944" height="0.246944" stroke-width="0" id="connector11terminal" class="terminal" x="12.5765"/>
+        <line y1="0.123472"  y2="5.20347" gorn="0.0.9" x1="12.7" x2="12.7" fill="none" stroke="#787878" stroke-linecap="round" stroke-width="0.246944" id="connector8" class="pin"/>
+        <g  transform="translate(12.9469,5.69736)">
+            <g >
+                <g  transform="rotate(270)">
+                    <g >
+                        <text font-size="1.23472" y="0"  font-family="'Droid Sans'" stroke="none" fill="#8c8c8c" text-anchor="end" stroke-width="0" class="text" x="0">Gnd</text>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <rect y="-0.123472"  gorn="0.0.11" fill="none" stroke="none" width="0.246944" height="0.246944" stroke-width="0" id="connector8terminal" class="terminal" x="12.5765"/>
+        <text font-size="1.49931" y="8.39014"  gorn="0.0.12" font-family="'Droid Sans'" stroke="none" fill="#000000" text-anchor="middle" id="label" stroke-width="0" class="text" x="14.1288">JSN</text>
+        <text font-size="1.49931" y="9.98944"  gorn="0.0.13" font-family="'Droid Sans'" stroke="none" fill="#000000" text-anchor="middle" id="label" stroke-width="0" class="text" x="14.1288">SR04T</text>
+        <text font-size="1.49931" y="11.5887"  gorn="0.0.14" font-family="'Droid Sans'" stroke="none" fill="#000000" text-anchor="middle" id="label" stroke-width="0" class="text" x="14.1288">Sonar</text>
+        <text font-size="1.49931" y="13.1881"  gorn="0.0.15" font-family="'Droid Sans'" stroke="none" fill="#000000" text-anchor="middle" id="label" stroke-width="0" class="text" x="14.1288">Controller</text>
+    </g>
+</svg>

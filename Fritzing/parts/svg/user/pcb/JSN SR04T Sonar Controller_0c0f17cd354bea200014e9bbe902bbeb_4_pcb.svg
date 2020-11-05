@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<svg xmlns="http://www.w3.org/2000/svg" x="0px" xml:space="preserve" id="Ebene_1" y="0px"  enable-background="new 0 0 23 44" version="1.1" xmlns:xml="http://www.w3.org/XML/1998/namespace" height="0.611111in" gorn="0" viewBox="0 0 23 44" width="0.319444in">
+    <desc>
+        <referenceFile>Humidity_and_Temperature_Sensor_RHT03_6.svg</referenceFile>
+    </desc>
+    <g id="silkscreen"  gorn="0.0">
+        <line fill="none" id="_103312832_1_" stroke="#FFFFFF"  y1="0.132" stroke-width="1" y2="42.936" x1="0.132" x2="0.132" gorn="0.0.0"/>
+        <line fill="none" id="_103312760_1_" stroke="#FFFFFF"  y1="42.936" stroke-width="1" y2="42.936" x1="0.132" x2="21.958" gorn="0.0.1"/>
+        <line fill="none" id="_103311800_1_" stroke="#FFFFFF"  y1="42.936" stroke-width="1" y2="0.132" x1="21.958" x2="21.958" gorn="0.0.2"/>
+        <line fill="none" id="_103311824_1_" stroke="#FFFFFF"  y1="0.132" stroke-width="1" y2="0.132" x1="0.132" x2="8.316" gorn="0.0.3"/>
+        <line fill="none" id="_103311968_1_" stroke="#FFFFFF"  y1="0.132" stroke-width="1" y2="0.132" x1="13.771" x2="21.958" gorn="0.0.4"/>
+    </g>
+    <g id="copper0"  gorn="0.1">
+        <g id="copper1"  gorn="0.1.0">
+            <circle fill="none" id="connector11pad" stroke="#F7BD13"  cx="13.029" stroke-width="1" cy="32.333" gorn="0.1.0.0" r="2.16"/>
+            <circle fill="none" id="connector10pad" stroke="#F7BD13"  cx="13.029" stroke-width="1" cy="25.134" gorn="0.1.0.1" r="2.16"/>
+            <circle fill="none" id="connector9pad" stroke="#F7BD13"  cx="13.029" stroke-width="1" cy="17.934" gorn="0.1.0.2" r="2.16"/>
+            <circle fill="none" id="connector8pad" stroke="#F7BD13"  cx="13.029" stroke-width="1" cy="10.734" gorn="0.1.0.3" r="2.16"/>
+        </g>
+    </g>
+</svg>
