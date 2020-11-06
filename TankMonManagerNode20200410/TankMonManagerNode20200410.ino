@@ -33,8 +33,6 @@
 
 */
 
-//#define NUMTANKS 8
-
 #include <cscNetServices.h>
 #include <Tanksmon.h>
 #include <BlynkSimpleEsp8266.h>
@@ -506,7 +504,6 @@ BLYNK_WRITE(V15)                      // Debug on/off
     }
   }
 }
-
 
 void setBlynkWidgets(bool global, bool tankOnly)
 {
