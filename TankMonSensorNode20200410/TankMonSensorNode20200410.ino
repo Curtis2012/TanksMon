@@ -26,7 +26,6 @@
 
 */
 
-//#define NUMTANKS 4  // ...leave in for sonars until converted to dynamic allocations
 
 #include <cscNetServices.h>
 #include <Tanksmon.h>
@@ -37,24 +36,6 @@
 
 bool ledOn = false;
 int chipID = 0;
-
-/* class sonarClass : public NewPingESP8266 {
-  public:
-    sonarClass(int trigPin, int echoPin, int maxDistance): NewPingESP8266(trigPin, echoPin, maxDistance)
-    {
-
-    };
-};
-*/
-
-/* sonarClass sonars[NUMTANKS] = {
-  sonarClass(14, 12, MAXPINGDISTANCE),
-  sonarClass(13, 15, MAXPINGDISTANCE),
-  sonarClass(5, 4, MAXPINGDISTANCE),
-  sonarClass(0, 2, MAXPINGDISTANCE)
-};
-*/
-
 
 auto timer = timer_create_default();
 
