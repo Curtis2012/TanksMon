@@ -23,7 +23,6 @@
   - add command support to terminal
   - add support for irregular tank shapes by using vector for liquid levels at configurable depth intervals.
   - modify blynkTankData to remove hard code tank numbers
-  - resolve compiler warning msgs
   - splash screen not displaying on blynk console
   - clean up outputs to use sprintf
   - move all blynkTerminal output to one function and implement semaphore to prevent conflicting output, also better isolates for future non-blynk user interface
