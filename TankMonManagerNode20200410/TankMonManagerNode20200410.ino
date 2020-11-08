@@ -13,6 +13,8 @@
   2020-04-15 Converted to not use blynk/simpletimer library due to problems creating timers
   2020-04-18 Moved to Visual Studio for IDE, incorporated into Tanks Mon solution (but...had problems w Visual Micro stability...)
   2020-10-10 C. Collins. Added PumpMon integration/low water shutoff logic, commands via MQTT
+  2020-11-06 C. Collins, moved to Github
+  2020-11-08 C. Collins, moved to Visual Studio/Visual Micro
 
 
   TODO:
