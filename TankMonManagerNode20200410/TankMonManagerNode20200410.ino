@@ -363,20 +363,6 @@ void handleCommandMsg()
             break; // should never get here, but just in case
           }
 
-        case 'C':  // accept new config file
-          {
-            if (targetNode == chipID)
-            {
-              Serial.println("Accept config file command received, responding...");
-              acceptConfigFile();
-            }
-            else {
-              if (targetNode == ALLPUMPNODES) sendConfigFile(ALLPUMPNODES);
-              if (targetNode == ALLTANKNODES) sendConfigFile(ALLTANKNODES);
-            }
-            break;
-          }
-
         case 'Q':  // query
           {
             Serial.println("Query command received, responding...");
@@ -568,7 +554,7 @@ void setup()
   Blynk.connect();
   setupNTP(timeZone);
   setupMdns(nodeName);
-  StartOTAIfRequired();
+  startOTA();
   hostEntry = findService("_mqtt", "_tcp");
   setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
   if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
