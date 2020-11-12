@@ -1,29 +1,29 @@
 {
 "site":
 	{
-	"sitename":"SUPERAGUAS",
+	"sitename":"CSC/HOMEPA",
 	"timezone":-5,
 	"dst":false,
-	"pssid":"pumpmonrpi",
+	"pssid":"COWIFI151420636/0-EXT",
 	"ppwd":"sail2012",
 	"usealt":false,
 	"altssid":"Bodega",
 	"altpwd":"sail2012",
-	"mqtt_topic_data": "superaguas/tankmon_data",
-	"mqtt_topic_ctrl": "superaguas/tankmon_ctrl",	
+	"mqtt_topic_data": "csc/homepa/tankmon_data",
+	"mqtt_topic_ctrl": "csc/homepa/tankmon_ctrl",	
 	"mqtt_server":"",
 	"mqtt_port":1883,
 	"mqtt_uid":"",
 	"mqtt_pwd":"",
-    "numtanks":8,
+    "numtanks":4,
 	"displaydelay":15000,
 	"imperial":false,
 	"useavg":false,
 	"debug":false,
 	"tankpingdelay":5000,
 	"senddatadelay":15000,
-	"otapwd":"Sail2012",
-	"blynkauthtoken":"S6_uUtRuEMvoCeFdHpvOyA0NYhhCUIa4"
+	"otapwd":"123",
+	"blynkauthtoken":"GBCY5avvW45A24xyW7J_TXNegXxv89q-"
 	},
 	
 "tankdefs":
@@ -36,7 +36,7 @@
 	"sensorOffset":21.0,
 	"loAlarmFactor":0.10,
 	"hiAlarmFactor":1.10,
-    "pumpnode":1969659,
+    "pumpnode":0,
 	"pumpnumber":0
 	},
 	{	
@@ -47,74 +47,30 @@
 	"sensorOffset":19.0,
 	"loAlarmFactor":0.10,
 	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":1
+	"pumpnode":0,
+	"pumpnumber":0
+	},
+	{
+	"tankType":"W",
+	"ignore":true,
+	"depth":95.5,
+	"vCM":10.8,
+	"sensorOffset":19.0,
+	"loAlarmFactor":0.10,
+	"hiAlarmFactor":1.10,
+	"pumpnode":0,
+	"pumpnumber":0
 	},
 	{	
-	"tankType":"W",
+	"tankType":"P",
     "ignore":false,		
 	"depth":95.5,
 	"vCM":10.8,
 	"sensorOffset":19.0,
 	"loAlarmFactor":0.10,
 	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":2
-	},
-	{	
-	"tankType":"W",
-    "ignore":false,		
-	"depth":95.5,
-	"vCM":10.8,
-	"sensorOffset":19.0,
-	"loAlarmFactor":0.10,
-	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":3
-	},
-	{	
-    "tankType":"W",
-    "ignore":false,
-	"depth":95.25,
-	"vCM":10.8,
-	"sensorOffset":21.0,
-	"loAlarmFactor":0.10,
-	"hiAlarmFactor":1.10,
-    "pumpnode":1969659,
-	"pumpnumber":4
-	},
-	{	
-	"tankType":"W",
-    "ignore":false,		
-	"depth":95.5,
-	"vCM":10.8,
-	"sensorOffset":19.0,
-	"loAlarmFactor":0.10,
-	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":5
-	},
-	{	
-	"tankType":"W",
-    "ignore":false,		
-	"depth":95.5,
-	"vCM":10.8,
-	"sensorOffset":19.0,
-	"loAlarmFactor":0.10,
-	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":6
-	},
-	{	
-	"tankType":"W",
-    "ignore":false,		
-	"depth":95.5,
-	"vCM":10.8,
-	"sensorOffset":19.0,
-	"loAlarmFactor":0.10,
-	"hiAlarmFactor":1.10,
-	"pumpnode":1969659,
-	"pumpnumber":7
+	"pumpnode":0,
+	"pumpnumber":0		
 	}
 ]
 }

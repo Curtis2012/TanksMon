@@ -1,4 +1,4 @@
-C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_huzzah\Release\ESP8266mDNS\LEAmDNS_Transfer.cpp.o: \
+C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_nodemcuv2\Release\ESP8266mDNS\LEAmDNS_Transfer.cpp.o: \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266mDNS\src\LEAmDNS_Transfer.cpp \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/include/user_interface.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/include/os_type.h \
@@ -125,8 +125,8 @@ C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_hu
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/MD5Builder.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/md5.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/debug.h \
- C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/pins_arduino.h \
- C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/../generic/common.h \
+ C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/pins_arduino.h \
+ C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/../generic/common.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/ESP8266WiFi.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/include/wl_definitions.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/ESP8266WiFiType.h \

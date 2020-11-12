@@ -15,6 +15,7 @@
   2020-10-10 C. Collins. Added PumpMon integration/low water shutoff logic, commands via MQTT
   2020-11-06 C. Collins, moved to Github
   2020-11-08 C. Collins, moved to Visual Studio/Visual Micro
+  2020-11-11 C. Collins, added OTA support
 
 
   TODO:
@@ -567,6 +568,7 @@ void setup()
   Blynk.connect();
   setupNTP(timeZone);
   setupMdns(nodeName);
+  StartOTAIfRequired();
   hostEntry = findService("_mqtt", "_tcp");
   setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
   if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
@@ -581,7 +583,10 @@ void setup()
 }
 
 void loop() {
+
+  HandleOTA();
   Blynk.run();
+  
   if (!mqttClient.connected())
   {
     connectMQTT(true, mqttTopicData, MDNS.IP(hostEntry));
