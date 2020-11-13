@@ -31,7 +31,7 @@
   - move all blynkTerminal output to one function and implement semaphore to prevent conflicting output, also better isolates for future non-blynk user interface
   - hard coded VPIN numbers and resulting code can be inproved by mapping vector of VPIN numbers
   - simpler to move all alarm handling to manager node rather than syncing changes from user app, to manager node, to sensor node
-  - setup enum class for Blynk V pins.
+  - setup enum class for Blynk V pins...or just move off of Blynk.
 
 */
 
@@ -544,7 +544,8 @@ void setup()
 
   if (!loadConfig())
   {
-    Serial.println("Failed to load config");
+    Serial.println("Failed to load config, halting");
+    while (true);
   };
 
   initTanks();
@@ -554,7 +555,7 @@ void setup()
   Blynk.connect();
   setupNTP(timeZone);
   setupMdns(nodeName);
-  startOTA();
+  startOTA(); // must be invoked AFTER mDNS setup
   hostEntry = findService("_mqtt", "_tcp");
   setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
   if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
@@ -570,7 +571,7 @@ void setup()
 
 void loop() {
 
-  HandleOTA();
+  handleOTA();
   Blynk.run();
   
   if (!mqttClient.connected())

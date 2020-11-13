@@ -141,4 +141,6 @@ C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_no
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/WiFiClientSecure.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/WiFiUdp.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Udp.h \
- C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/include/slist.h
+ C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/include/slist.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_Boards.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_mem_check.h

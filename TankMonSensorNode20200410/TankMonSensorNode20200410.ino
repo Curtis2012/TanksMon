@@ -5,7 +5,7 @@
   2019-09-15 C.Collins Initial Arduino version supporrting up to 4 tanks
   2019-10-10 Ported to NodeMCU board and converted to Blynk standalone via WiFi
   2019-10-11 Added alarm functionality
-  2019-10-13 Added OTA
+  2019-10-13 Added OTA, first attempt...not successful
   2019-10-17 Changed architecture to sensor controller/manager node architecture where sensor controller only deals with sensors and all other external interfaces and functions are handled on manager node. Manager node can manage multiple sensor nodes.
              This allows multiple tank senor nodes to report to one manager node making number of sensors/tanks easily expandable. This also supports sensor nodes being physically distant from each other and the manager node. Used JSON over MQTT.
              Also makes it easy to add future functionality such as pump monitor/control functions with pump related sensors being implemented as another sensor node.
@@ -13,12 +13,13 @@
   2020-03-28 Begin clean up code including elimnation of redundant code and moving shared code to libraries.
   2020-10-10 C. Collins. Added commands via MQTT
   2020-10-23 C. Collins. Converted to dynamic memory allocation for tanks/sensors
+  2020-11-11 C. Collins, added OTA support
+
 
   TODO:
 
   - discard outliers pings
   - review alarm logic across sensor & manager nodes and clean up
-  - add configuration persistence via flash file/string
   - add support for irregular tank shapes by using vector for liquid levels at configurable depth intervals.
   - add com output to browser
   - convert multiple prints to sprintf
@@ -339,7 +340,7 @@ void displayStartHeader(int i)
 
   if (i == 2)
   {
-    msgn = snprintf(msgbuff, MSGBUFFLEN, "\nNodename: %s \nMQTT mqttTopic: %s \ndebug = %i \nnumtanks = %i ", nodeName, mqttTopic, debug, numtanks);
+    msgn = snprintf(msgbuff, MSGBUFFLEN, "\nNodename: %s \nMQTT mqttTopicCtrl: %s \ndebug = %i \nnumtanks = %i ", nodeName, mqttTopicCtrl, debug, numtanks);
     Serial.println(msgbuff);
     displayTankData();
     Serial.println();
@@ -365,19 +366,23 @@ void setup()
   Serial.begin(9600);
   if (!loadConfig())
   {
-    Serial.println("Failed to load config");
+    Serial.println("Failed to load config, halting");
+    while (true);
   };
   displayStartHeader(1);
   chipID = ESP.getChipId();
   msgn = sprintf(nodeName, "SNTM-W-ESP8266-%X", chipID);  // SNTM-W (Sensor Node Tanks Mon - Water)
   pinMode(LED_BUILTIN, OUTPUT);
   connectWiFi();
+
   while (!setupNTP(timeZone)) {
     delay(5000);
   };
   while (!setupMdns(nodeName)) {
     delay(5000);
   };
+  startOTA();  // must be invoked AFTER mDNS setup
+
   hostEntry = -1;
   while (hostEntry == -1) {
     hostEntry = findService("_mqtt", "_tcp");
@@ -405,4 +410,6 @@ void loop() {
 
   if (!mqttClient.connected()) connectMQTT(true, mqttTopicCtrl, MDNS.IP(hostEntry));
   mqttClient.loop();
+  handleOTA();
+
 }
