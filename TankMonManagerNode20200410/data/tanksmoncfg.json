@@ -19,7 +19,7 @@
 	"displaydelay":15000,
 	"imperial":false,
 	"useavg":false,
-	"debug":false,
+	"debug":true,
 	"tankpingdelay":5000,
 	"senddatadelay":15000,
 	"otapwd":"sail2012",

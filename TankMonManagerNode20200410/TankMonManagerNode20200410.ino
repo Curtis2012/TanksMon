@@ -63,522 +63,522 @@ auto displayUpdateTimer = timer_create_default();
 auto LEDTimer = timer_create_default();
 uintptr_t displayUpdateTaskID;
 
-void sendPumpCmd(int t, char cmd)
+void sendPumpCmd(int t, char cmdin)
 {
-  digitalWrite(LED_BUILTIN, LOW);                           // Turn the LED on (Note that LOW is the voltage level
 
-  t += startingTankNum;
+	StaticJsonDocument<100> cmdmsg;
+	char cmdbuff[100] = "";                // use separate buffer from msgbuff to avoid command from getting stepped on in global msgbuff
+	String cmd = " ";                     // kludge for converting char to "string" for use by json
 
-  tankmsg["node"] = chipID;
-  tankmsg["msgtype"] = 'C';                      // command messge
-  tankmsg["cmd"] = cmd;                          // stop command
-  tankmsg["targetnode"] = tanks[t].pumpNode;            // address pump node
-  tankmsg["pumpnum"] = tanks[t].pumpNumber;          // pump number to stop
+	digitalWrite(LED_BUILTIN, LOW);                           // Turn the LED on (Note that LOW is the voltage level
 
-  serializeJson(tankmsg, msgbuff);
+	cmd[0] = cmdin;                        // kludge: json does not support char data type, so convert to "string"
 
-  if (debug)
-  {
-    Serial.print("\nmsgbuff=(");
-    Serial.print(msgbuff);
-    Serial.println(")");
-    serializeJson(tankmsg, Serial);
-    displayTankData();
-  }
+	cmdmsg["node"] = chipID;
+	cmdmsg["msgtype"] = "C";                      // command messge
+	cmdmsg["cmd"] = cmd;                          // stop command
+	cmdmsg["targetnode"] = tanks[t].pumpNode;            // address pump node
+	cmdmsg["pumpnum"] = tanks[t].pumpNumber;          // pump number to stop
 
-  mqttClient.publish(mqttTopicCtrl, msgbuff);
-  digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
+
+	serializeJson(cmdmsg, cmdbuff);
+
+	if (debug)
+	{
+		Serial.print("in sendPumpCmd(), ");
+		Serial.print("\ncmdbuff=(");
+		Serial.print(cmdbuff);
+		Serial.println(")");
+		serializeJson(cmdmsg, Serial);
+		displayTankData();
+	}
+
+	mqttClient.publish(mqttTopicCtrl, cmdbuff);
+	digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
+	if (debug) Serial.println("leaving sendPumpCmd()");
 }
 
 void handleAlarm(int tank)
 {
-  String notification = "";
+	String notification = "";
 
-  globalAlarmFlag = true;
+	globalAlarmFlag = true;
 
-  if (tanks[tank].alarmFlags & HIALARM)
-  {
-    blynkTimestamp();
-    notification = "HI ALARM! on Tank " + String(tank + 1);
-    blynkTerminal.println();
-    blynkTerminal.println(notification);
-    blynkTerminal.flush();
-    blynkAlarmLED.on();
-    Blynk.notify(notification);
-  }
+	if (tanks[tank].alarmFlags & HIALARM)
+	{
+		blynkTimestamp();
+		notification = "HI ALARM! on Tank " + String(tank + 1);
+		blynkTerminal.println();
+		blynkTerminal.println(notification);
+		blynkTerminal.flush();
+		blynkAlarmLED.on();
+		Blynk.notify(notification);
+	}
 
-  if (tanks[tank].alarmFlags & LOALARM)
-  {
-    blynkTimestamp();
-    notification = "LO ALARM! on Tank " + String(tank + 1);
-    blynkTerminal.println();
-    blynkTerminal.println(notification);
-    blynkTerminal.flush();
-    blynkAlarmLED.on();
-    Blynk.notify(notification);
-    sendPumpCmd(tank, 'S');  // send stop command
-  }
+	if (tanks[tank].alarmFlags & LOALARM)
+	{
+		blynkTimestamp();
+		notification = "LO ALARM! on Tank " + String(tank + 1);
+		blynkTerminal.println();
+		blynkTerminal.println(notification);
+		blynkTerminal.flush();
+		blynkAlarmLED.on();
+		Blynk.notify(notification);
+		if (debug)
+		{
+			Serial.print("Sending stop command for tank = ");
+			Serial.println(tank);
+		}
+		if ((tanks[tank].tankType[0] != 'P') && (!tanks[tank].ignore)) sendPumpCmd(tank, 'S');  // send stop command
+	}
 
-  /*
-    if (tanks[tank].alarmFlags & MAXDEPTH)
-    {
-      blynkTimestamp();
-      notification = "MAX DEPTH ALARM! on Tank " + String(tank + 1) + ", depth = " + String(tanks[tank].depth);
-      blynkTerminal.println();
-      blynkTerminal.println(notification);
-      blynkTerminal.flush();
-      blynkAlarmLED.on();
-      Blynk.notify(notification);
-    }
-  */
+	/*
+	  if (tanks[tank].alarmFlags & MAXDEPTH)
+	  {
+		blynkTimestamp();
+		notification = "MAX DEPTH ALARM! on Tank " + String(tank + 1) + ", depth = " + String(tanks[tank].depth);
+		blynkTerminal.println();
+		blynkTerminal.println(notification);
+		blynkTerminal.flush();
+		blynkAlarmLED.on();
+		Blynk.notify(notification);
+	  }
+	*/
 
 }
 
 void outputMsg(char* msg, bool serialout, bool blynkout)
 {
-  // output msg to both com and blynk with timestamp header, convert all output to use this routine
-  // always outputs to serial, optionally output to blynk
-  // functions which are called by outputMsg and generate output should not use outputMsg to avoid recursive calls
+	// output msg to both com and blynk with timestamp header, convert all output to use this routine
+	// always outputs to serial, optionally output to blynk
+	// functions which are called by outputMsg and generate output should not use outputMsg to avoid recursive calls
 
-  digitalWrite(IOLED, LOW);
+	digitalWrite(IOLED, LOW);
 
-  if (serialout)
-  {
-    printTimestamp();
-    Serial.println(msg);
-  }
+	if (serialout)
+	{
+		printTimestamp();
+		Serial.println(msg);
+	}
 
-  if (blynkout)
-  {
-    blynkTimestamp();
-    blynkTerminal.println(msg);
-    blynkTerminal.flush();
-  }
+	if (blynkout)
+	{
+		blynkTimestamp();
+		blynkTerminal.println(msg);
+		blynkTerminal.flush();
+	}
 
-  digitalWrite(IOLED, HIGH);
+	digitalWrite(IOLED, HIGH);
 }
 
 void blynkTimestamp()
 {
-  blynkTerminal.println();
-  blynkTerminal.print(nodeName);
-  blynkTerminal.print(" ");
-  blynkTerminal.print(timestampString());
-  blynkTerminal.println();
+	blynkTerminal.println();
+	blynkTerminal.print(nodeName);
+	blynkTerminal.print(" ");
+	blynkTerminal.print(timestampString());
+	blynkTerminal.println();
 }
 
 void printTimestamp()
 {
-  Serial.println();
-  Serial.print(nodeName);
-  Serial.print(" ");
-  Serial.print(timestampString());
-  Serial.println();
+	Serial.println();
+	Serial.print(nodeName);
+	Serial.print(" ");
+	Serial.print(timestampString());
+	Serial.println();
 }
 
 void clearAlarm(std::uint8_t alarmType, int tank)
 {
-  int a = -1;
-  std::uint8_t alarmCheck = 0b00000000;
+	int a = -1;
+	std::uint8_t alarmCheck = 0b00000000;
 
-  blynkTimestamp();
-  a = mapAlarm(alarmType);
-  if (a >= 0)
-  {
-    tanks[tank].alarmFlags = tanks[tank].alarmFlags & (~alarmType); // clear specific alarm flag
-    blynkTerminal.println();
-    blynkTerminal.print("Alarm cleared: ");
-    blynkTerminal.print(alarms[a].alarmName);
-    blynkTerminal.print(", tank ");
-    blynkTerminal.print(tank + 1);
-    blynkTerminal.println();
-    blynkTerminal.flush();
+	blynkTimestamp();
+	a = mapAlarm(alarmType);
+	if (a >= 0)
+	{
+		tanks[tank].alarmFlags = tanks[tank].alarmFlags & (~alarmType); // clear specific alarm flag
+		blynkTerminal.println();
+		blynkTerminal.print("Alarm cleared: ");
+		blynkTerminal.print(alarms[a].alarmName);
+		blynkTerminal.print(", tank ");
+		blynkTerminal.print(tank + 1);
+		blynkTerminal.println();
+		blynkTerminal.flush();
 
-    if (alarmType == LOALARM)
-    {
-      sendPumpCmd(tank, 'R');  // send resume command
-    }
-  }
-  else
-  {
-    blynkTerminal.println();
-    blynkTerminal.print("Error mapping alarm type to error name in clearAlarm, alarmtype = ");
-    blynkTerminal.println(alarmType);
-    blynkErrorLED.on();
-  }
+		if (alarmType == LOALARM)
+		{
+			sendPumpCmd(tank, 'R');  // send resume command
+		}
+	}
+	else
+	{
+		blynkTerminal.println();
+		blynkTerminal.print("Error mapping alarm type to error name in clearAlarm, alarmtype = ");
+		blynkTerminal.println(alarmType);
+		blynkErrorLED.on();
+	}
 
-  for (int t = 0; t <= numtanks - 1; t++)
-  {
-    alarmCheck = alarmCheck | tanks[t].alarmFlags;
-  }
+	for (int t = 0; t <= numtanks - 1; t++)
+	{
+		alarmCheck = alarmCheck | tanks[t].alarmFlags;
+	}
 
-  if (alarmCheck == 0)
-  {
-    globalAlarmFlag = false;
-    blynkAlarmLED.off();
-    blynkTerminal.print("All alarms cleared");
-    blynkTerminal.flush();
-  }
+	if (alarmCheck == 0)
+	{
+		globalAlarmFlag = false;
+		blynkAlarmLED.off();
+		blynkTerminal.print("All alarms cleared");
+		blynkTerminal.flush();
+	}
 }
 
 void blynkTankData()
 {
-  float cvtG = 1.0, cvtI = 1.0;
+	float cvtG = 1.0, cvtI = 1.0;
 
-  blynkUpdateLED.on();
+	blynkUpdateLED.on();
 
-  if (imperial)
-  {
-    cvtG = CVTFACTORGALLONS;
-    cvtI = CVTFACTORINCHES;
-  }
+	if (imperial)
+	{
+		cvtG = CVTFACTORGALLONS;
+		cvtI = CVTFACTORINCHES;
+	}
 
-  if (useAvg)
-  {
-    Blynk.virtualWrite(V0, (tanks[0].liquidDepthAvg * cvtI));
-    Blynk.virtualWrite(V1, (tanks[1].liquidDepthAvg * cvtI));
-    Blynk.virtualWrite(V4, (tanks[0].liquidVolumeAvg * cvtG));
-    Blynk.virtualWrite(V5, (tanks[1].liquidVolumeAvg * cvtG));
-  }
-  else
-  {
-    Blynk.virtualWrite(V0, (tanks[0].liquidDepth * cvtI));
-    Blynk.virtualWrite(V1, (tanks[1].liquidDepth * cvtI));
-    Blynk.virtualWrite(V4, (tanks[0].liquidVolume * cvtG));
-    Blynk.virtualWrite(V5, (tanks[1].liquidVolume * cvtG));
-  }
+	if (useAvg)
+	{
+		Blynk.virtualWrite(V0, (tanks[0].liquidDepthAvg * cvtI));
+		Blynk.virtualWrite(V1, (tanks[1].liquidDepthAvg * cvtI));
+		Blynk.virtualWrite(V4, (tanks[0].liquidVolumeAvg * cvtG));
+		Blynk.virtualWrite(V5, (tanks[1].liquidVolumeAvg * cvtG));
+	}
+	else
+	{
+		Blynk.virtualWrite(V0, (tanks[0].liquidDepth * cvtI));
+		Blynk.virtualWrite(V1, (tanks[1].liquidDepth * cvtI));
+		Blynk.virtualWrite(V4, (tanks[0].liquidVolume * cvtG));
+		Blynk.virtualWrite(V5, (tanks[1].liquidVolume * cvtG));
+	}
 
-  Blynk.virtualWrite(V13, (tanks[PROPANETANKNUM].percentFull));
+	Blynk.virtualWrite(V13, (tanks[PROPANETANKNUM].percentFull));
 
-  blynkUpdateLED.off();
-  digitalWrite(IOLED, HIGH);
+	blynkUpdateLED.off();
+	digitalWrite(IOLED, HIGH);
 }
 
 void displayTankData()
 {
-  int  msgloc = 0;
+	int  msgloc = 0;
 
-  for (int t = 0; t <= numtanks - 1; t++)
-  {
-    msgloc = 0;
-    msgloc += snprintf(msgbuff, MSGBUFFSIZE, "\nTank %u \nTank Depth %1.2f \nTank liters/cm depth %1.2f  ", (t + 1), tanks[t].depth, tanks[t].vCM);
-    msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nActual liquid depth %1.2f \nAverage liquid depth %1.2f", tanks[t].liquidDepth, tanks[t].liquidDepthAvg);
-    msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nActual liquid volume %1.2f \nAverage liquid volume %1.2f ", tanks[t].liquidVolume, tanks[t].liquidVolumeAvg);
-    msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nLo alarm level %1.2f \nHi alarm level %1.2f", tanks[t].loAlarm, tanks[t].hiAlarm);
-    outputMsg(msgbuff, false, true);
-  }
+	if (debug) Serial.println("in displayTankData()");
+	for (int t = 0; t <= numtanks - 1; t++)
+	{
+		msgloc = 0;
+		msgloc += snprintf(msgbuff, MSGBUFFSIZE, "\nTank %u \nTank Depth %1.2f \nTank liters/cm depth %1.2f  ", (t + 1), tanks[t].depth, tanks[t].vCM);
+		msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nActual liquid depth %1.2f \nAverage liquid depth %1.2f", tanks[t].liquidDepth, tanks[t].liquidDepthAvg);
+		msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nActual liquid volume %1.2f \nAverage liquid volume %1.2f ", tanks[t].liquidVolume, tanks[t].liquidVolumeAvg);
+		msgloc += snprintf(&msgbuff[msgloc], MSGBUFFSIZE - msgloc, "\nLo alarm level %1.2f \nHi alarm level %1.2f", tanks[t].loAlarm, tanks[t].hiAlarm);
+		outputMsg(msgbuff, false, true);
+	}
 }
 
 bool handleDisplayTimer(void*)
 {
 
-  blynkTankData();
-  checkTimeOut();
-  return (true);
+	blynkTankData();
+	checkTimeOut();
+	return (true);
 }
 
 bool handleLEDTimer(void*)
 {
-  if (ledOn)
-  {
-    digitalWrite(LED_BUILTIN, HIGH);
-  }
-  else
-  {
-    digitalWrite(LED_BUILTIN, LOW);
-  }
+	if (ledOn)
+	{
+		digitalWrite(LED_BUILTIN, HIGH);
+	}
+	else
+	{
+		digitalWrite(LED_BUILTIN, LOW);
+	}
 
-  ledOn = !ledOn;
-  return (true);
+	ledOn = !ledOn;
+	return (true);
 }
 
 void copyJSONmsgtoStruct()
 {
-  int t = tankmsg["t"];
+	int t = tankmsg["t"];
 
-  tanks[t].depth = tankmsg["d"];
-  tanks[t].vCM = tankmsg["vCM"];
-  tanks[t].liquidDepth = tankmsg["lD"];
-  tanks[t].liquidDepthAvg = tankmsg["lDAvg"];
-  tanks[t].liquidVolume = tankmsg["lV"];
-  tanks[t].liquidVolumeAvg = tankmsg["lVAvg"];
-  tanks[t].loAlarm = tankmsg["loA"];
-  tanks[t].hiAlarm = tankmsg["hiA"];
-  tanks[t].alarmFlags_prev = tanks[t].alarmFlags;
-  tanks[t].alarmFlags = tankmsg["aF"];
+	tanks[t].depth = tankmsg["d"];
+	tanks[t].vCM = tankmsg["vCM"];
+	tanks[t].liquidDepth = tankmsg["lD"];
+	tanks[t].liquidDepthAvg = tankmsg["lDAvg"];
+	tanks[t].liquidVolume = tankmsg["lV"];
+	tanks[t].liquidVolumeAvg = tankmsg["lVAvg"];
+	tanks[t].loAlarm = tankmsg["loA"];
+	tanks[t].hiAlarm = tankmsg["hiA"];
+	tanks[t].alarmFlags_prev = tanks[t].alarmFlags;
+	tanks[t].alarmFlags = tankmsg["aF"];
 
 }
 
 void checkTimeOut()
 {
-  unsigned long timeDelta = 0;
-  int t = 0;
+	unsigned long timeDelta = 0;
+	int t = 0;
 
-  for (t = 0; t < numtanks; t++)
-  {
+	for (t = 0; t < numtanks; t++)
+	{
 
-    timeDelta = millis() - tanks[t].lastMsgTime;
-    Serial.println();
-    msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nTank %i: timeDelta = %1d, timeOut = %ld, lastMsgTime = %ld", t, timeDelta, tanks[t].timeOut, tanks[t].lastMsgTime);
-    outputMsg(msgbuff, true, true);
-    if (timeDelta > tanks[t].timeOut)
-    {
-      Serial.print("Timeout on tank ");
-      Serial.print(t);
-    }
-  }
-}
-
-
-void sendConfigFile(long int targetNode)
-{
-  Serial.println("in sendConfigFile()");
-}
-
-void acceptConfigFile()
-{
-  Serial.println("in acceptConfigFile()");
+		timeDelta = millis() - tanks[t].lastMsgTime;
+		Serial.println();
+		msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nTank %i: timeDelta = %1d, timeOut = %ld, lastMsgTime = %ld", t, timeDelta, tanks[t].timeOut, tanks[t].lastMsgTime);
+		outputMsg(msgbuff, true, true);
+		if (timeDelta > tanks[t].timeOut)
+		{
+			Serial.print("Timeout on tank ");
+			Serial.print(t);
+		}
+	}
 }
 
 void handleCommandMsg()
 {
-  const char* cmd = "";
-  const char* msgtype = "";
-  long int targetNode = 0;
-  int pumpNum = 0;
+	const char* cmd = "";
+	const char* msgtype = "";
+	long int targetNode = 0;
+	int pumpNum = 0;
 
-  msgtype = tankmsg["msgtype"];
-  if (msgtype[0] == 'C')                             // confirm is command msg
-  {
-    targetNode = tankmsg["targetnode"];
+	msgtype = tankmsg["msgtype"];
+	if (msgtype[0] == 'C')                             // confirm is command msg
+	{
+		targetNode = tankmsg["targetnode"];
 
-    if ((targetNode == chipID) || (targetNode == ALLNODES))
-    {
-      cmd = tankmsg["cmd"];
-      switch (cmd[0]) {
-        case 'B':  // reboot
-          {
-            Serial.println("Reboot command received, rebooting...");
-            ESP.restart();
-            break; // should never get here, but just in case
-          }
+		if ((targetNode == chipID) || (targetNode == ALLNODES))
+		{
+			cmd = tankmsg["cmd"];
+			switch (cmd[0]) {
+			case 'B':  // reboot
+			{
+				Serial.println("Reboot command received, rebooting...");
+				ESP.restart();
+				break; // should never get here, but just in case
+			}
 
-        case 'Q':  // query
-          {
-            Serial.println("Query command received, responding...");
-            displayTankData();
-            blynkTankData();
-            break;
-          }
+			case 'Q':  // query
+			{
+				Serial.println("Query command received, responding...");
+				displayTankData();
+				blynkTankData();
+				break;
+			}
 
-        default:
-          {
-            Serial.println("Invalid command message received, ignored");
-          }
-      }
-    }
-    else Serial.println("Node in cmd != chipID or ALLNODES, command ignored");
-  }
-  else Serial.println("Invalid message type received");
+			default:
+			{
+				Serial.println("Invalid command message received, ignored");
+			}
+			}
+		}
+		else Serial.println("Node in cmd != chipID or ALLNODES, command ignored");
+	}
+	else Serial.println("Invalid message type received");
 }
 
 void updatePumpDisplay()
 {
-  Serial.println("in updatePumpDisplay()");
+	Serial.println("in updatePumpDisplay()");
 }
 
-void handleMQTTmsg(char* topic, byte * payload, unsigned int length) {
+void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 
-  int t = -1;
-  float percentFullTest = 0;
-  const char* msgtype = "";
-  const char* tanktype = "";
+	int t = -1;
+	float percentFullTest = 0;
+	const char* msgtype = "";
+	const char* tanktype = "";
 
-
-  debug = true;
-
-  if (debug)
-  {
-    msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nMessage arrived, topic [%s]", topic);
-    outputMsg(msgbuff, true, true);
-    for (int i = 0; i < length; i++)
-    {
-      Serial.print((char)payload[i]);
-    }
-    Serial.println();
-  }
+	if (debug)
+	{
+		msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nMessage arrived, topic [%s]", topic);
+		outputMsg(msgbuff, true, true);
+		for (int i = 0; i < length; i++)
+		{
+			Serial.print((char)payload[i]);
+		}
+		Serial.println();
+	}
 
 
-  deserializeJson(tankmsg, payload, MAXJSONSIZE);
+	deserializeJson(tankmsg, payload, MAXJSONSIZE);
 
-  msgtype = tankmsg["msgtype"];
-  Serial.print("\nmsgtype="); Serial.println(msgtype);
-  switch (msgtype[0])
-  {
+	msgtype = tankmsg["msgtype"];
+	Serial.print("\nmsgtype="); Serial.println(msgtype);
+	switch (msgtype[0])
+	{
 
-    case 'C': // command msg
-      {
-        handleCommandMsg();
-      }
-    case 'P': // pump msg
-      {
-        updatePumpDisplay();
-        break;
-      }
-    case 'T': // tank msg
-      {
-        t = tankmsg["t"];
-        tanktype = tankmsg["tT"];
-        Serial.print("\ntanktype="); Serial.println(tanktype);
-        if (tanktype[0] == 'P')
-        {
-          Serial.println("\nPropane tank msg received.");
-          percentFullTest = tankmsg["pF"];
-          if ((percentFullTest > -1) && (percentFullTest < 101))
-          {
-            tanks[PROPANETANKNUM].percentFull = percentFullTest;
-            Serial.print("\nPropane tank percentage full = ");
-            Serial.println(tanks[PROPANETANKNUM].percentFull);
-          }
-        }
-        else
-        {
-          Serial.println("Non-propane tank msg received");
-          copyJSONmsgtoStruct();
-        }
+	case 'C': // command msg
+	{
+		handleCommandMsg();
+	}
+	case 'P': // pump msg
+	{
+		updatePumpDisplay();
+		break;
+	}
+	case 'T': // tank msg
+	{
+		t = tankmsg["t"];
+		tanktype = tankmsg["tT"];
+		Serial.print("\ntanktype="); Serial.println(tanktype);
+		if (tanktype[0] == 'P')
+		{
+			Serial.println("\nPropane tank msg received.");
+			percentFullTest = tankmsg["pF"];
+			if ((percentFullTest > -1) && (percentFullTest < 101))
+			{
+				tanks[PROPANETANKNUM].percentFull = percentFullTest;
+				Serial.print("\nPropane tank percentage full = ");
+				Serial.println(tanks[PROPANETANKNUM].percentFull);
+			}
+		}
+		else
+		{
+			Serial.println("Non-propane tank msg received");
+			copyJSONmsgtoStruct();
+		}
 
-        if (tanks[t].alarmFlags != 0)
-        {
-          handleAlarm(t);
-        }
-        else if (tanks[t].alarmFlags_prev != 0) clearAlarm(CLEARALARMS, t);
+		if (tanks[t].alarmFlags != 0)
+		{
+			handleAlarm(t);
+		}
+		else if (tanks[t].alarmFlags_prev != 0) clearAlarm(CLEARALARMS, t);
 
-        if (!globalAlarmFlag && blynkAlarmLED.getValue()) blynkAlarmLED.off(); // clear alarm LED if left on from previous device selection in Blynk app
-        tanks[t].lastMsgTime = millis();
-        break;
-      }
+		if (!globalAlarmFlag && blynkAlarmLED.getValue()) blynkAlarmLED.off(); // clear alarm LED if left on from previous device selection in Blynk app
+		tanks[t].lastMsgTime = millis();
+		break;
+	}
 
-    default:
-      {
-        Serial.println("Invalid message type received");
-      }
-  }
+	default:
+	{
+		Serial.println("Invalid message type received");
+	}
+	}
 }
 
 void splashScreen()
 {
-  blynkTerminal.clear();
-  msgn = snprintf(msgbuff, MSGBUFFSIZE, "\n\nTank Monitor Manager Node started \nBuild: Beta Test %s %s\nSite: %s \nNode: %s", __DATE__, __TIME__, sitename, nodeName);
-  outputMsg(msgbuff, false, true);
+	blynkTerminal.clear();
+	msgn = snprintf(msgbuff, MSGBUFFSIZE, "\n\nTank Monitor Manager Node started \nBuild: Beta Test %s %s\nSite: %s \nNode: %s", __DATE__, __TIME__, sitename, nodeName);
+	outputMsg(msgbuff, false, true);
 }
 
 BLYNK_WRITE(V15)                      // Debug on/off
 {
-  if (!blynkWidgetsUpdate)
-  {
-    switch (param.asInt())
-    {
-      case 1: {
-          debug = false;
-          outputMsg("Debug off", false, true);
+	if (!blynkWidgetsUpdate)
+	{
+		switch (param.asInt())
+		{
+		case 1: {
+			debug = false;
+			outputMsg("Debug off", false, true);
 
-          break;
-        }
-      case 2: {
-          debug = true;
-          outputMsg("Debug on", false, true);
-          break;
-        }
-    }
-  }
+			break;
+		}
+		case 2: {
+			debug = true;
+			outputMsg("Debug on", false, true);
+			break;
+		}
+		}
+	}
 }
 
 void setBlynkWidgets(bool global, bool tankOnly)
 {
-  int dbg = 0;
+	int dbg = 0;
 
-  // update global parameters
+	// update global parameters
 
-  blynkWidgetsUpdate = true;
+	blynkWidgetsUpdate = true;
 
-  blynkUpdateLED.off();
-  blynkErrorLED.off();
-  blynkAlarmLED.off();
+	blynkUpdateLED.off();
+	blynkErrorLED.off();
+	blynkAlarmLED.off();
 
-  dbg = ((debug) ? (2) : (1));
-  Blynk.virtualWrite(V15, dbg);
-  blynkWidgetsUpdate = false;
+	dbg = ((debug) ? (2) : (1));
+	Blynk.virtualWrite(V15, dbg);
+	blynkWidgetsUpdate = false;
 
 }
 
 void tickTimers()
 {
-  displayUpdateTimer.tick();
-  LEDTimer.tick();
+	displayUpdateTimer.tick();
+	LEDTimer.tick();
 }
 
 void initTanks()
 {
-  int i = 0;
-  for (i = 0; i < numtanks; i++)
-  {
-    tanks[i].lastMsgTime = millis(); // init all to same start time
-    if (tanks[i].tankType[0] == 'P') tanks[i].timeOut = 10800 * 1e6; // Set timeout to 3 hours since PropaneTankMon may not sample for hours
-  }
+	int i = 0;
+	for (i = 0; i < numtanks; i++)
+	{
+		tanks[i].lastMsgTime = millis(); // init all to same start time
+		if (tanks[i].tankType[0] == 'P') tanks[i].timeOut = 10800 * 1e6; // Set timeout to 3 hours since PropaneTankMon may not sample for hours
+	}
 }
 
 void setup()
 {
-  delay(3000);                                     // Initial delay to provide intervention window
-  debug = true;
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);            // keep LED on until start up complete
-  pinMode(IOLED, OUTPUT);
-  digitalWrite(IOLED, HIGH);
+	delay(3000);                                     // Initial delay to provide intervention window
+	debug = true;
+	pinMode(LED_BUILTIN, OUTPUT);
+	digitalWrite(LED_BUILTIN, LOW);            // keep LED on until start up complete
+	pinMode(IOLED, OUTPUT);
+	digitalWrite(IOLED, HIGH);
 
-  Serial.begin(9600);
+	Serial.begin(9600);
 
-  Serial.println("\n\nTanks Mon Manager Node starting...");
-  chipID = ESP.getChipId();
-  msgn = sprintf(nodeName, "MNTM-ESP8266-%X", chipID);
+	Serial.println("\n\nTanks Mon Manager Node starting...");
+	chipID = ESP.getChipId();
+	msgn = sprintf(nodeName, "MNTM-ESP8266-%X", chipID);
 
-  if (!loadConfig())
-  {
-    Serial.println("Failed to load config, halting");
-    while (true);
-  };
+	if (!loadConfig())
+	{
+		Serial.println("Failed to load config, halting");
+		while (true);
+	};
 
-  initTanks();
+	initTanks();
 
-  connectWiFi();
-  Blynk.config(blynkAuth);
-  Blynk.connect();
-  setupNTP(timeZone);
-  setupMdns(nodeName);
-  startOTA(); // must be invoked AFTER mDNS setup
-  hostEntry = findService("_mqtt", "_tcp");
-  setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
-  if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
+	connectWiFi();
+	Blynk.config(blynkAuth);
+	Blynk.connect();
+	setupNTP(timeZone);
+	setupMdns(nodeName);
+	startOTA(); // must be invoked AFTER mDNS setup
+	hostEntry = findService("_mqtt", "_tcp");
+	setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
+	if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
 
-  setBlynkWidgets(true, true);
+	setBlynkWidgets(true, true);
 
-  splashScreen();
+	splashScreen();
 
-  digitalWrite(LED_BUILTIN, HIGH);
-  displayUpdateTaskID = displayUpdateTimer.every(displayUpdateDelay, handleDisplayTimer);
-  LEDTimer.every(LEDFLASHTIME, handleLEDTimer);
+	digitalWrite(LED_BUILTIN, HIGH);
+	displayUpdateTaskID = displayUpdateTimer.every(displayUpdateDelay, handleDisplayTimer);
+	LEDTimer.every(LEDFLASHTIME, handleLEDTimer);
 }
 
 void loop() {
 
-  handleOTA();
-  Blynk.run();
-  
-  if (!mqttClient.connected())
-  {
-    connectMQTT(true, mqttTopicData, MDNS.IP(hostEntry));
-    subscribeMQTT(mqttTopicCtrl);
-  }
-  mqttClient.loop();
-  tickTimers();
+	handleOTA();
+	Blynk.run();
+
+	if (!mqttClient.connected())
+	{
+		connectMQTT(true, mqttTopicData, MDNS.IP(hostEntry));
+		subscribeMQTT(mqttTopicCtrl);
+	}
+	mqttClient.loop();
+	tickTimers();
 }
