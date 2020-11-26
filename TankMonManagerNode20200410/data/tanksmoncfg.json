@@ -31,6 +31,7 @@
 	{	
     "tankType":"W",
     "ignore":false,
+    "timeout": 60,
 	"depth":95.25,
 	"vCM":10.8,
 	"sensorOffset":21.0,
@@ -42,6 +43,7 @@
 	{	
 	"tankType":"W",
     "ignore":false,		
+    "timeout": 60,		
 	"depth":95.5,
 	"vCM":10.8,
 	"sensorOffset":19.0,
@@ -53,6 +55,7 @@
 	{
 	"tankType":"W",
 	"ignore":true,
+	"timeout": 60,
 	"depth":95.5,
 	"vCM":10.8,
 	"sensorOffset":19.0,
@@ -64,9 +67,7 @@
 	{	
 	"tankType":"P",
     "ignore":false,		
-	"depth":95.5,
-	"vCM":10.8,
-	"sensorOffset":19.0,
+	"timeout": 10800,
 	"loAlarmFactor":0.10,
 	"hiAlarmFactor":1.10,
 	"pumpnode":0,

@@ -419,6 +419,7 @@ void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 	case 'C': // command msg
 	{
 		handleCommandMsg();
+		break;
 	}
 	case 'P': // pump msg
 	{
@@ -429,22 +430,43 @@ void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 	{
 		t = tankmsg["t"];
 		tanktype = tankmsg["tT"];
-		Serial.print("\ntanktype="); Serial.println(tanktype);
-		if (tanktype[0] == 'P')
+		if (debug) { Serial.print("\ntanktype="); Serial.println(tanktype); }
+
+		switch (tanktype[0])
 		{
-			Serial.println("\nPropane tank msg received.");
+
+		case 'P': // propane tank
+
+		{
 			percentFullTest = tankmsg["pF"];
 			if ((percentFullTest > -1) && (percentFullTest < 101))
 			{
 				tanks[PROPANETANKNUM].percentFull = percentFullTest;
-				Serial.print("\nPropane tank percentage full = ");
-				Serial.println(tanks[PROPANETANKNUM].percentFull);
+				copyJSONmsgtoStruct();   // copy to pickup alarm flags etc, most other attributes ignored for propane tank
+
+				if (debug)
+				{
+					Serial.print("\nPropane tank percentage full = ");
+					Serial.println(tanks[PROPANETANKNUM].percentFull);
+				}
 			}
+			else
+			{
+				msgn = snprintf(msgbuff, MSGBUFFLEN, "\nInvalid propane tank percentage full (%f) received on tank %i", percentFullTest, t);
+				outputMsg(msgbuff);
+			}
+			break;
 		}
-		else
+		case 'W': // water tank
+		{
+			copyJSONmsgtoStruct();
+			break;
+		}
+
+		default:
 		{
 			Serial.println("Non-propane tank msg received");
-			copyJSONmsgtoStruct();
+		}
 		}
 
 		if (tanks[t].alarmFlags != 0)
@@ -523,7 +545,6 @@ void initTanks()
 	for (i = 0; i < numtanks; i++)
 	{
 		tanks[i].lastMsgTime = millis(); // init all to same start time
-		if (tanks[i].tankType[0] == 'P') tanks[i].timeOut = 10800 * 1e6; // Set timeout to 3 hours since PropaneTankMon may not sample for hours
 	}
 }
 
