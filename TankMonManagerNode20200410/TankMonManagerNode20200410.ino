@@ -332,9 +332,12 @@ void checkTimeOut()
 	{
 
 		timeDelta = millis() - tanks[t].lastMsgTime;
-		Serial.println();
-		msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nTank %i: timeDelta = %1d, timeOut = %ld, lastMsgTime = %ld", t, timeDelta, tanks[t].timeOut, tanks[t].lastMsgTime);
-		outputMsg(msgbuff, true, true);
+		if (debug)
+		{
+			Serial.println();
+			msgn = snprintf(msgbuff, MSGBUFFSIZE, "\nTank %i: timeDelta = %1d, timeOut = %ld, lastMsgTime = %ld", t, timeDelta, tanks[t].timeOut, tanks[t].lastMsgTime);
+			outputMsg(msgbuff, true, true);
+		}
 		if (timeDelta > tanks[t].timeOut)
 		{
 			Serial.print("Timeout on tank ");
@@ -592,6 +595,7 @@ void setup()
 
 void loop() {
 
+	timeClient.update();
 	handleOTA();
 	Blynk.run();
 
