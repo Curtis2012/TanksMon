@@ -31,7 +31,6 @@
 #include <cscNetServices.h>
 #include <Tanksmon.h>
 
-#define debug false
 #define LEDFLASHTIME 3000
 #define MSGBUFFSIZE 40
 
@@ -357,6 +356,7 @@ void initSonars()
   for (int i = 0; i < numtanks; i++)
   {
     tanks[i].sonar = new NewPingESP8266(tanks[i].sonarTrigPin, tanks[i].sonarEchoPin);
+    if (tanks[i].ignore) { float d = tanks[i].sonar->convert_cm(tanks[i].sonar->ping_median()); }  // ping an ingnored tank once just to init controller and turn off LED
   }
 }
 

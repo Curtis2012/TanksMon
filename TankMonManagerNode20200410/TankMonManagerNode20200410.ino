@@ -9,6 +9,7 @@
   2019-10-22 Changed architecture to sensor node/manager node architecture where sensor node only deals with sensors and all other external interfaces and functions are handled on manager node.
 			 Manager node can manage multiple sensor nodes. This allows multiple senor nodes to report to one manager node making number of sensors/tanks easily expandable.
 			 This also supports sensor nodes being physically distant from each other and the manager node. Used MQTT protocol with JSON payload.
+
   2020-03-30 Begain process of restructuring code to use common library (Tankmon.h), fixing bugs, improving implementation, resolving OTA issues...
   2020-04-15 Converted to not use blynk/simpletimer library due to problems creating timers
   2020-04-18 Moved to Visual Studio for IDE, incorporated into Tanks Mon solution (but...had problems w Visual Micro stability...)
@@ -16,12 +17,15 @@
   2020-11-06 C. Collins, moved to Github
   2020-11-08 C. Collins, moved to Visual Studio/Visual Micro
   2020-11-11 C. Collins, added OTA support
+  2020-12-08 C. Collins. Added tank level persistence. This was needed to handle the situation where the long deep sleeping propane tank monitor and manager node get out of sync.
+                         For example, propane monitor is in deep sleep when manager node is rebooted. In this case the manager node will restart with propane tank level of 0 and may not receive
+                         an update for a long time. This results in tank level of 0 being displayed until an update is received (which could be hours in the case of propane monitor). The persist file
+                         allows the manager node to load the last known good level reading.
 
 
   TODO:
 
-  - enchance code to handle multiple sensor nodes
-	- use node name to differentiate, display tanks for each node on separage tab in app
+ 
   - clean up displayTankData and blynkTankData to be better structured/integrated
   - add command support to terminal
   - add support for irregular tank shapes by using vector for liquid levels at configurable depth intervals.
@@ -29,7 +33,7 @@
   - splash screen not displaying on blynk console
   - clean up outputs to use sprintf
   - move all blynkTerminal output to one function and implement semaphore to prevent conflicting output, also better isolates for future non-blynk user interface
-  - hard coded VPIN numbers and resulting code can be inproved by mapping vector of VPIN numbers
+  - hard coded VPIN numbers and resulting code can be inproved by mapping vector of VPIN numbers, add VPIN numbers to config file
   - simpler to move all alarm handling to manager node rather than syncing changes from user app, to manager node, to sensor node
   - setup enum class for Blynk V pins...or just move off of Blynk.
 
@@ -42,7 +46,7 @@
 #define IOLED 2
 #define BLYNK_PRINT Serial
 #define LEDFLASHTIME 3000L
-#define PROPANETANKNUM 4
+#define PROPANETANKNUM 3
 #define ALLTANKNODES -512
 #define ALLPUMPNODES -1024
 
@@ -62,6 +66,48 @@ long int chipID = 0;
 auto displayUpdateTimer = timer_create_default();
 auto LEDTimer = timer_create_default();
 uintptr_t displayUpdateTaskID;
+
+bool writePersistFile(char* buff)
+{
+	int b = -1;
+
+	if (!persistFile.seek(0, SeekSet))
+	{
+		Serial.println("Seek failed on persist file");
+		return(false);
+	}
+	else
+	{
+		b = persistFile.println(buff);
+		if (!(b > 0))
+		{
+			Serial.println("Write to persist file failed");
+		}
+	}
+
+	return(false);
+}
+
+bool loadPersistFile(char* buff)
+{
+	int b = -1;
+
+	if (!persistFile.seek(0, SeekSet))
+	{
+		Serial.println("Seek failed on persist file");
+		return(false);
+	}
+	else
+	{
+		b = persistFile.readBytesUntil('\n', buff, JSONPERSISTDOCSIZE);
+		if (!(b > 0))
+		{
+			Serial.println("Read of persist file failed");
+		}
+	}
+
+	return(false);
+}
 
 void sendPumpCmd(int t, char cmdin)
 {
