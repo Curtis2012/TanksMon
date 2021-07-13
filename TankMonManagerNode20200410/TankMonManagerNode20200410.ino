@@ -623,7 +623,7 @@ void setup()
 	connectWiFi();
 	Blynk.config(blynkAuth);
 	Blynk.connect();
-	setupNTP(timeZone);
+	if (!setupNTP(timeZone)) setupNTP(timeZone);   // Retry once
 	setupMdns(nodeName);
 	startOTA(); // must be invoked AFTER mDNS setup
 	hostEntry = findService("_mqtt", "_tcp");
