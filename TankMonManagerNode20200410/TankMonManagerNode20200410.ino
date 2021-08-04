@@ -599,8 +599,7 @@ void initTanks()
 
 void setup()
 {
-	delay(3000);                                     // Initial delay to provide intervention window
-	debug = true;
+	delay(5000);                                     // Initial delay to provide intervention window
 	pinMode(LED_BUILTIN, OUTPUT);
 	digitalWrite(LED_BUILTIN, LOW);            // keep LED on until start up complete
 	pinMode(IOLED, OUTPUT);
@@ -623,9 +622,13 @@ void setup()
 	connectWiFi();
 	Blynk.config(blynkAuth);
 	Blynk.connect();
-	if (!setupNTP(timeZone)) setupNTP(timeZone);   // Retry once
-	setupMdns(nodeName);
+
+	setupNTP(timeZone, ntpRetryCnt, false);
+
+	setupMdns(nodeName, mdnsRetryCnt, true);
+
 	startOTA(); // must be invoked AFTER mDNS setup
+
 	hostEntry = findService("_mqtt", "_tcp");
 	setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
 	if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");

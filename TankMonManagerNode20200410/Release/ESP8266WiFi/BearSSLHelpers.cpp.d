@@ -84,4 +84,4 @@ C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_no
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/WString.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Stream.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/md5.h \
- C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_nodemcuv2\Release/core/Updater_Signing.h
+ C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Updater_Signing.h

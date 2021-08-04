@@ -14,6 +14,8 @@
 		"mqtt_port": 1883,
 		"mqtt_uid": "",
 		"mqtt_pwd": "",
+		"mdnsretrycnt": 3,
+		"ntpretrycnt": 3,
 		"numtanks": 4,
 		"displaydelay": 15000,
 		"imperial": false,

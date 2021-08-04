@@ -362,6 +362,7 @@ void initSonars()
 
 void setup()
 {
+
   delay(5000);                                     // Initial delay to allow intervention
   Serial.begin(9600);
   if (!loadConfig())
@@ -369,18 +370,17 @@ void setup()
     Serial.println("Failed to load config, halting");
     while (true);
   };
+
   displayStartHeader(1);
   chipID = ESP.getChipId();
   msgn = sprintf(nodeName, "SNTM-W-ESP8266-%X", chipID);  // SNTM-W (Sensor Node Tanks Mon - Water)
   pinMode(LED_BUILTIN, OUTPUT);
   connectWiFi();
 
-  while (!setupNTP(timeZone)) {
-    delay(5000);
-  };
-  while (!setupMdns(nodeName)) {
-    delay(5000);
-  };
+  setupNTP(timeZone, ntpRetryCnt, false);
+
+  setupMdns(nodeName, mdnsRetryCnt, true);
+
   startOTA();  // must be invoked AFTER mDNS setup
 
   hostEntry = -1;
