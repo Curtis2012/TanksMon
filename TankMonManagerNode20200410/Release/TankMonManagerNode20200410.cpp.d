@@ -69,6 +69,10 @@ C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_no
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/debug.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/pins_arduino.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/../generic/common.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG/VM_DBG.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG/VM_Boards.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG/VM_mem_check.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG/VM_mem_check.h \
  C:\Users\admin\Documents\Arduino\libraries\cscNetServices/cscNetServices.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/ESP8266WiFi.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\libraries\ESP8266WiFi\src/include/wl_definitions.h \

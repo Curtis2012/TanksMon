@@ -688,6 +688,10 @@ void setup()
 		loadPersistFile();
 	}
 
+	if (!openLogFile())
+	{
+		Serial.println("Failed to ceate/open log file, continuing...");
+	}
 
 	initTanks();
 

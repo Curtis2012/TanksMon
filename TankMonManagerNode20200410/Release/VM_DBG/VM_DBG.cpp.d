@@ -1,6 +1,6 @@
 C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_nodemcuv2\Release\VM_DBG\VM_DBG.cpp.o: \
- c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.cpp \
- c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.cpp \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Arduino.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/stdlib.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/machine/ieeefp.h \
@@ -69,5 +69,5 @@ C:\Users\admin\AppData\Local\Temp\VMBuilds\TankMonManagerNode20200410\esp8266_no
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/debug.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/pins_arduino.h \
  C:\Users\admin\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\nodemcu/../generic/common.h \
- c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_Boards.h \
- c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\jlizm50l.lv0\Micro\ Platforms\default\debuggers\VM_DBG\VM_mem_check.h
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG\VM_Boards.h \
+ c:\program\ files\ (x86)\microsoft\ visual\ studio\2019\community\common7\ide\extensions\gtx0jdrb.pl2\Micro\ Platforms\default\debuggers\VM_DBG\VM_mem_check.h
