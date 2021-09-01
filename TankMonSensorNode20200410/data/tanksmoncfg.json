@@ -14,6 +14,7 @@
 		"mqtt_port": 1883,
 		"mqtt_uid": "",
 		"mqtt_pwd": "",
+		"mqttretrycnt": 3,
 		"mdnsretrycnt": 3,
 		"ntpretrycnt": 3,
 		"numtanks": 3,
@@ -24,7 +25,7 @@
 		"tankpingdelay": 5000,
 		"senddatadelay": 15000,
 		"startingTankNum": 0,
-		"otapwd": "sail2012",
+		"otapwd": "Sail2012",
 		"blynkauthtoken": "GBCY5avvW45A24xyW7J_TXNegXxv89q-"
 	},
 	"tankdefs": [
@@ -60,19 +61,8 @@
 			"depth": 95.5,
 			"vCM": 10.8,
 			"sensorOffset": 19.0,
-			"sonarTrigPin": 5,
-			"sonarEchoPin": 4,
-			"loAlarmFactor": 0.10,
-			"hiAlarmFactor": 1.10,
-			"pumpnode": 0,
-			"pumpnumber": 0
-		},
-		{
-			"tankType": "P",
-			"ignore": false,
-			"depth": 95.5,
-			"vCM": 10.8,
-			"sensorOffset": 19.0,
+			"sonarTrigPin": 14,
+			"sonarEchoPin": 12,
 			"loAlarmFactor": 0.10,
 			"hiAlarmFactor": 1.10,
 			"pumpnode": 0,

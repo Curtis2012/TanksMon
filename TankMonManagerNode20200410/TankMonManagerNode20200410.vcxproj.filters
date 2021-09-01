@@ -21,5 +21,8 @@
     <ClInclude Include="__vm\.TankMonManagerNode20200410.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\libraries\cscNetServices\cscNetServices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

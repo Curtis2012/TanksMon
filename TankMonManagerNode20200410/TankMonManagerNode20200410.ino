@@ -17,15 +17,15 @@
   2020-11-06 C. Collins, moved to Github
   2020-11-08 C. Collins, moved to Visual Studio/Visual Micro
   2020-11-11 C. Collins, added OTA support
-  2020-12-08 C. Collins. Added tank level persistence. This was needed to handle the situation where the long deep sleeping propane tank monitor and manager node get out of sync.
-                         For example, propane monitor is in deep sleep when manager node is rebooted. In this case the manager node will restart with propane tank level of 0 and may not receive
-                         an update for a long time. This results in tank level of 0 being displayed until an update is received (which could be hours in the case of propane monitor). The persist file
-                         allows the manager node to load the last known good level reading.
+  2020-12-08 C. Collins. (in progress) Added tank level persistence. This was needed to handle the situation where the long deep sleeping propane tank monitor and manager node get out of sync.
+						 For example, propane monitor is in deep sleep when manager node is rebooted. In this case the manager node will restart with propane tank level of 0 and may not receive
+						 an update for a long time. This results in tank level of 0 being displayed until an update is received (which could be hours in the case of propane monitor). The persist file
+						 allows the manager node to load the last known good level reading.
 
 
   TODO:
 
- 
+
   - clean up displayTankData and blynkTankData to be better structured/integrated
   - add command support to terminal
   - add support for irregular tank shapes by using vector for liquid levels at configurable depth intervals.
@@ -36,6 +36,7 @@
   - hard coded VPIN numbers and resulting code can be inproved by mapping vector of VPIN numbers, add VPIN numbers to config file
   - simpler to move all alarm handling to manager node rather than syncing changes from user app, to manager node, to sensor node
   - setup enum class for Blynk V pins...or just move off of Blynk.
+  - logic for no propane tank, in debug output too.
 
 */
 
@@ -66,6 +67,11 @@ long int chipID = 0;
 auto displayUpdateTimer = timer_create_default();
 auto LEDTimer = timer_create_default();
 uintptr_t displayUpdateTaskID;
+
+BLYNK_APP_DISCONNECTED() {
+	Serial.println("Connection to Blynk lost, restarting.");
+	ESP.restart();
+}
 
 bool writePersistFile(char* buff)
 {
@@ -139,7 +145,11 @@ void sendPumpCmd(int t, char cmdin)
 		displayTankData();
 	}
 
-	mqttClient.publish(mqttTopicCtrl, cmdbuff);
+	//mqttClient.publish(mqttTopicCtrl, cmdbuff);
+
+	publishMQTT(mqttTopicCtrl, cmdbuff, true);
+
+
 	digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
 	if (debug) Serial.println("leaving sendPumpCmd()");
 }
@@ -308,9 +318,18 @@ void blynkTankData()
 	}
 
 	Blynk.virtualWrite(V13, (tanks[PROPANETANKNUM].percentFull));
+	if (debug)
+	{
+		displayTankData();
+		Serial.print("\ntanks[PROPANETANKNUM].percentFull = ");
+		Serial.print(tanks[PROPANETANKNUM].percentFull);
+	}
 
 	blynkUpdateLED.off();
 	digitalWrite(IOLED, HIGH);
+
+	persistTankData();
+
 }
 
 void displayTankData()
@@ -386,8 +405,16 @@ void checkTimeOut()
 		}
 		if (timeDelta > tanks[t].timeOut)
 		{
-			Serial.print("Timeout on tank ");
-			Serial.print(t);
+			if (!tanks[t].ignore)
+			{
+				Serial.print("\nTimeout on tank ");
+				Serial.print(t);
+			}
+			if (debug)
+			{
+				Serial.print("\ntanks[t].ignore = ");
+				Serial.println(tanks[t].ignore);
+			}
 		}
 	}
 }
@@ -420,6 +447,24 @@ void handleCommandMsg()
 				Serial.println("Query command received, responding...");
 				displayTankData();
 				blynkTankData();
+				break;
+			}
+
+			case 'D':  // debug switch
+			{
+			
+				debug = !debug;
+				Serial.print("Debug = ");
+				Serial.println(debug);
+				break;
+			}
+			
+			case 'P':  // clear persistence file.
+			{
+				Serial.println("Clear persistence file command received, clearing and reloading file");
+				clearPersistFile();
+				openPersistFile();
+				loadPersistFile();
 				break;
 			}
 
@@ -461,7 +506,9 @@ void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 	deserializeJson(tankmsg, payload, MAXJSONSIZE);
 
 	msgtype = tankmsg["msgtype"];
-	Serial.print("\nmsgtype="); Serial.println(msgtype);
+
+	if (debug) Serial.print("\nmsgtype="); Serial.println(msgtype);
+
 	switch (msgtype[0])
 	{
 
@@ -479,7 +526,14 @@ void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 	{
 		t = tankmsg["t"];
 		tanktype = tankmsg["tT"];
-		if (debug) { Serial.print("\ntanktype="); Serial.println(tanktype); }
+		if (debug)
+		{
+			Serial.print("\ntanktype=");
+			Serial.println(tanktype);
+			Serial.print("\ntankmsg = ");
+			serializeJsonPretty(tankmsg, Serial);
+
+		}
 
 		switch (tanktype[0])
 		{
@@ -508,6 +562,7 @@ void handleMQTTmsg(char* topic, byte* payload, unsigned int length) {
 		}
 		case 'W': // water tank
 		{
+			if (debug) Serial.println("'W' tank type msg received");
 			copyJSONmsgtoStruct();
 			break;
 		}
@@ -597,6 +652,11 @@ void initTanks()
 	}
 }
 
+void blynkRetry()
+{
+	if (!Blynk.connect()) ESP.restart();
+}
+
 void setup()
 {
 	delay(5000);                                     // Initial delay to provide intervention window
@@ -617,6 +677,19 @@ void setup()
 		while (true);
 	};
 
+//	persistFile = SPIFFS.open(TANKSMONPERSISTFILE, "w");  // debug code!
+
+	if (!openPersistFile())
+	{
+		Serial.println("Failed to ceate/open persist file, halting");
+		while (true);
+	}
+	else
+	{
+		loadPersistFile();
+	}
+
+
 	initTanks();
 
 	connectWiFi();
@@ -629,8 +702,10 @@ void setup()
 
 	startOTA(); // must be invoked AFTER mDNS setup
 
-	hostEntry = findService("_mqtt", "_tcp");
-	setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg);
+	hostEntry = findService("_mqtt", "_tcp", mdnsRetryCnt, true);
+
+	setupMQTT(MDNS.IP(hostEntry), MDNS.port(hostEntry), true, mqttTopicData, handleMQTTmsg, true);
+
 	if (!subscribeMQTT(mqttTopicCtrl)) Serial.print("Subscribe to MQTT control topic failed!");
 
 	setBlynkWidgets(true, true);
@@ -646,7 +721,15 @@ void loop() {
 
 	timeClient.update();
 	handleOTA();
-	Blynk.run();
+
+	if (Blynk.connected())
+	{
+		Blynk.run();
+	}
+	else
+	{
+		blynkRetry();
+	}
 
 	if (!mqttClient.connected())
 	{
