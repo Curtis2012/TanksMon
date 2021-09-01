@@ -681,8 +681,7 @@ void setup()
 
 	if (!openPersistFile())
 	{
-		Serial.println("Failed to ceate/open persist file, halting");
-		while (true);
+		Serial.println("Failed to ceate/open persist file, continuing...");
 	}
 	else
 	{
