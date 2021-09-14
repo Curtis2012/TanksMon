@@ -307,7 +307,7 @@ void blynkTankData()
 		Blynk.virtualWrite(tanks[t].vpin, tanks[t].liquidDepth);
 		if (debug)
 		{
-			msgn = sprintf()
+			msgn = snprintf(msgbuff, MSGBUFFSIZE, "tank [%i].liquidDepth = %f", t, tanks[t].liquidDepth);
 		}
 	}
 
