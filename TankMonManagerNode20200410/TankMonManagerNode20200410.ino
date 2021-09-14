@@ -302,7 +302,12 @@ void blynkTankData()
 		cvtI = CVTFACTORINCHES;
 	}
 
-	if (useAvg)
+	for (int t = 0; t < numtanks; t++)
+	{
+		Blynk.virtualWrite(tanks[t].vpin, tanks[t].liquidDepth);
+	}
+
+/* if (useAvg)  // not for Jardines
 	{
 		Blynk.virtualWrite(V0, (tanks[0].liquidDepthAvg * cvtI));
 		Blynk.virtualWrite(V1, (tanks[1].liquidDepthAvg * cvtI));
@@ -324,6 +329,7 @@ void blynkTankData()
 		Serial.print("\ntanks[PROPANETANKNUM].percentFull = ");
 		Serial.print(tanks[PROPANETANKNUM].percentFull);
 	}
+	*/
 
 	blynkUpdateLED.off();
 	digitalWrite(IOLED, HIGH);
