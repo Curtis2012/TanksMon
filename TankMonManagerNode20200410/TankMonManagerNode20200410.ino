@@ -168,7 +168,7 @@ void handleAlarm(int tank)
 		blynkTerminal.println(notification);
 		blynkTerminal.flush();
 		blynkAlarmLED.on();
-		Blynk.notify(notification);
+		if  (blynkNotifications)  Blynk.notify(notification);
 	}
 
 	if (tanks[tank].alarmFlags & LOALARM)
@@ -179,7 +179,7 @@ void handleAlarm(int tank)
 		blynkTerminal.println(notification);
 		blynkTerminal.flush();
 		blynkAlarmLED.on();
-		Blynk.notify(notification);
+		if (blynkNotifications) Blynk.notify(notification);
 		if (debug)
 		{
 			Serial.print("Sending stop command for tank = ");
