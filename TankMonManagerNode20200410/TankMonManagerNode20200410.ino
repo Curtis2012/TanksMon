@@ -305,6 +305,10 @@ void blynkTankData()
 	for (int t = 0; t < numtanks; t++)
 	{
 		Blynk.virtualWrite(tanks[t].vpin, tanks[t].liquidDepth);
+		if (debug)
+		{
+			msgn = sprintf()
+		}
 	}
 
 /* if (useAvg)  // not for Jardines
