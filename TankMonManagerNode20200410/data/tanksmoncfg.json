@@ -23,9 +23,7 @@
 		"useavg": false,
 		"debug": true,
 		"tankpingdelay": 5000,
-		"senddatadelay": 15000,
-		"startingTankNum": 0,
-		"otapwd": "Sail2012",
+		"blynkNotifications": false,
 		"blynkauthtoken": "S6_uUtRuEMvoCeFdHpvOyA0NYhhCUIa4"
 	},
 	"tankdefs": [
